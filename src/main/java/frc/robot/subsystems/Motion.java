@@ -35,11 +35,19 @@ public class Motion extends SubsystemBase {
     hoodPivot.getConfigurator().apply(ConstMotion.HOOD_PIVOT_CONFIGURATION);
   }
 
+  /**
+   * this codes takes an angle and setting a desired angle for the Intake to
+   * allign to.
+   */
   public void setIntakePivotAngle(Angle setAngle) {
     intakePivot.setControl(intakePivotMotionRequest.withPosition(setAngle));
     lastDesiredIntakePivotAngle = setAngle;
   }
 
+  /**
+   * this codes takes an angle and setting a desired angle for the Hood to allign
+   * to
+   */
   public void setHoodPivotAngle(Angle setAngle) {
     hoodPivot.setControl(hoodPivotMotionRequest.withPosition(setAngle));
     lastDesiredHoodPivotAngle = setAngle;
@@ -59,6 +67,7 @@ public class Motion extends SubsystemBase {
     return hoodPivot.getPosition().getValue();
   }
 
+  /** checks to see if hood is at correct angle */
   public boolean isHoodPivotAtAngle(Angle tolerance) {
     Angle lowerlim = lastDesiredHoodPivotAngle.minus(tolerance);
     Angle upperlim = lastDesiredHoodPivotAngle.plus(tolerance);
