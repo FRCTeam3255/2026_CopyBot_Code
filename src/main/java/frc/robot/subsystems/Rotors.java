@@ -63,19 +63,11 @@ public class Rotors extends SubsystemBase {
     return serializerRollers.getVelocity().getValue();
   }
 
-  public AngularVelocity getIntakeRollersEastVelocity() {
-    return intakeRollersEast.getVelocity().getValue();
-  }
-
-  public AngularVelocity getIntakeRollersWestVelocity() {
+  public AngularVelocity getIntakeRollersVelocity() {
     return intakeRollersEast.getVelocity().getValue();
   }
 
   public AngularVelocity getTransferRollersVelocity() {
-    return transferRollersEast.getVelocity().getValue();
-  }
-
-  public AngularVelocity getTransferRollersWestVelocity() {
     return transferRollersEast.getVelocity().getValue();
   }
 
@@ -85,14 +77,6 @@ public class Rotors extends SubsystemBase {
 
   public AngularVelocity getFlywheelWestVelocity() {
     return flywheelTopWest.getVelocity().getValue();
-  }
-
-  public AngularVelocity getFlywheelEastFollowerVelocity() {
-    return flywheelBottomEast.getVelocity().getValue();
-  }
-
-  public AngularVelocity getFlywheelWestFollowerVelocity() {
-    return flywheelBottomWest.getVelocity().getValue();
   }
 
   public void setSerializerRollersSpeed(double speed) {
