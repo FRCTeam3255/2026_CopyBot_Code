@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -51,6 +52,7 @@ public class Rotors extends SubsystemBase {
   // final MotionMagicVelocityVoltage TransferVelocityRequest = new
   // MotionMagicVelocityVoltage(0);/
   final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage intakeRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
 
   public AngularVelocity getFlyWheelSpeeds() {
     if (Robot.isSimulation()) {
@@ -75,8 +77,8 @@ public class Rotors extends SubsystemBase {
     serializerRollers.set(speed);
   }
 
-  public void setIntakeRollersSpeeds(double speed) {
-    intakeRollersEast.set(speed);
+  public void setIntakeRollersSpeeds(AngularVelocity speed) {
+    intakeRollersEast.setControl(intakeRollersVelocityRequest.withVelocity(speed));
     intakeRollersWest.setControl(intakeRollerEastFollower);
   }
 

@@ -7,7 +7,8 @@ package frc.robot.constants;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.fasterxml.jackson.core.filter.TokenFilter.Inclusion;
+import edu.wpi.first.units.Units;
+import edu.wpi.first.units.measure.AngularVelocity;
 
 /** Add your docs here. */
 public class ConstRotors {
@@ -19,6 +20,7 @@ public class ConstRotors {
   public static final TalonFXConfiguration TRANSFER_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
+  public static final AngularVelocity INTAKE_ROLLERS_INTAKING = Units.RPM.of(4000);
 
   static {
 
@@ -62,6 +64,6 @@ public class ConstRotors {
 
   }
 
-  public static final double STOP = 0;
+  public static final AngularVelocity STOP = Units.RPM.of(0);
 
 }

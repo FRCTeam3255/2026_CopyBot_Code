@@ -7,7 +7,7 @@ package frc.robot.commands.states;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstMotion;
-import frc.robot.subsystems.Motion;
+import frc.robot.constants.ConstRotors;
 
 public class Intaking extends Command {
   /** Creates a new Intaking. */
@@ -23,12 +23,15 @@ public class Intaking extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.rotorsInstance.setIntakeRollersSpeeds(ConstRotors.INTAKE_ROLLERS_INTAKING);
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.rotorsInstance.setIntakeRollersSpeeds(ConstRotors.STOP);
+
   }
 
   // Returns true when the command should end.
