@@ -53,7 +53,7 @@ public class Motion extends SubsystemBase {
     lastDesiredHoodPivotAngle = setAngle;
   }
 
-  public Angle getPivotAngle() {
+  public Angle getIntakePivotAngle() {
     if (Robot.isSimulation()) {
       return lastDesiredIntakePivotAngle;
     }
