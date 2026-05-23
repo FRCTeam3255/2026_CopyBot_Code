@@ -43,10 +43,10 @@ public class DeviceIDs {
     public static final int INTAKE_ROLLERS_EAST_CAN = 13;
     public static final int TRANSFER_ROLLERS_WEST_CAN = 14;
     public static final int TRANSFER_ROLLERS_EAST_CAN = 15;
-    public static final int FLYWHEEL_ROLLERS_WEST_CAN = 16;
-    public static final int FLYWHEEL_ROLLERS_EAST_CAN = 17;
-    public static final int FLYWHEEL_WEST_FOLLOWER = 18;
-    public static final int FLYWHEEL_EAST_FOLLOWER = 19;
+    public static final int FLYWHEEL_WEST_CAN = 16;
+    public static final int FLYWHEEL_EAST_CAN = 17;
+    public static final int FLYWHEEL_WEST_FOLLOWER_CAN = 18;
+    public static final int FLYWHEEL_EAST_FOLLOWER_CAN = 19;
 
   }
 
