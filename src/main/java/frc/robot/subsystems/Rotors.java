@@ -30,7 +30,7 @@ public class Rotors extends SubsystemBase {
   AngularVelocity lastDesiredFlyWheelSpeed = Units.RPM.of(0);
   AngularVelocity lastDesiredTransferRollersSpeed = Units.RPM.of(0);
   Follower flywheelEastFollower = new Follower(flywheelTopEast.getDeviceID(), false);
-  Follower flywheelWestFollower = new Follower(flywheelTopWest.getDeviceID(), false);
+  Follower flywheelWestFollower = new Follower(flywheelTopEast.getDeviceID(), true);
   Follower transferRollersEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
   Follower intakeRollerEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
   private boolean flyWheelAtSpeed = false;
@@ -75,10 +75,6 @@ public class Rotors extends SubsystemBase {
     return flywheelTopEast.getVelocity().getValue();
   }
 
-  public AngularVelocity getFlywheelWestVelocity() {
-    return flywheelTopWest.getVelocity().getValue();
-  }
-
   public void setSerializerRollersSpeed(double speed) {
     serializerRollers.set(speed);
   }
@@ -95,7 +91,7 @@ public class Rotors extends SubsystemBase {
 
   public void setFlywheelSpeeds(AngularVelocity speed) {
     flywheelTopEast.setControl(flyWheelVelocityRequest.withVelocity(speed));
-    flywheelTopWest.setControl(flyWheelVelocityRequest.withVelocity(speed));
+    flywheelTopWest.setControl(flywheelWestFollower);
     flywheelBottomWest.setControl(flywheelWestFollower);
     flywheelBottomEast.setControl(flywheelEastFollower);
     lastDesiredFlyWheelSpeed = speed;
