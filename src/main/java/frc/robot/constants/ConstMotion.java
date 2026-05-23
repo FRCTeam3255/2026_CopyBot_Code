@@ -17,4 +17,5 @@ public class ConstMotion {
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final Angle INTAKE_PIVOT_DEPLOY = Degrees.of(90);
   // jayden in the future make a intake retract/
+  public static final Angle RETRACT_PIVOT_DEPLOY = Degrees.of(-90);
 }

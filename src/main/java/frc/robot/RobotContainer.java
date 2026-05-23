@@ -19,8 +19,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
+import frc.robot.commands.states.Intaking;
+import frc.robot.commands.states.RetractIntake;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
 import frc.robot.subsystems.DriverStateMachine.DriverState;
@@ -55,7 +58,8 @@ public class RobotContainer {
   private final RobotPoses loggedRobotPose = robotPose;
   public static final Vision subVision = new Vision();
   private final Vision loggedSubVision = subVision;
-
+  public static final Intaking intakingInstance = new Intaking();
+  public static final RetractIntake RetractingInstance = new RetractIntake();
   Command TRY_NONE = Commands.deferredProxy(
       () -> subStateMachine.tryState(RobotState.NONE));
 
@@ -95,7 +99,10 @@ public class RobotContainer {
     // subDrivetrain.resetModulesToAbsolute()));
     conDriver.btn_Back
         .onTrue(Commands.runOnce(() -> subDrivetrain.resetPose(new Pose2d(0, 0, new Rotation2d()))));
-
+    conDriver.btn_RightTrigger
+        .whileTrue(intakingInstance);
+    conDriver.btn_LeftTrigger
+        .whileTrue(RetractingInstance);
     // Example Pose Drive
     conDriver.btn_X
         .whileTrue(EXAMPLE_POSE_DRIVE)

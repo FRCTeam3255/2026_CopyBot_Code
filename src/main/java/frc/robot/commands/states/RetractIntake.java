@@ -7,23 +7,22 @@ package frc.robot.commands.states;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstMotion;
-import frc.robot.subsystems.Motion;
 
-public class Intaking extends Command {
-  /** Creates a new Intaking. */
-  public Intaking() {
+public class RetractIntake extends Command {
+  /** Creates a new RetractIntake. */
+  public RetractIntake() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.INTAKE_PIVOT_DEPLOY);
+    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.RETRACT_PIVOT_DEPLOY);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
   }
 
   // Called once the command ends or is interrupted.
