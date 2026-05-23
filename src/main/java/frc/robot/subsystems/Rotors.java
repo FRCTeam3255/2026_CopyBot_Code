@@ -35,6 +35,9 @@ public class Rotors extends SubsystemBase {
   Follower transferRollersEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
   Follower intakeRollerEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
   private boolean flyWheelAtSpeed = false;
+
+  final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage intakeRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
   // private boolean intakeRollersAtSpeed = false;/
 
   public Rotors() {
@@ -51,8 +54,6 @@ public class Rotors extends SubsystemBase {
 
   // final MotionMagicVelocityVoltage TransferVelocityRequest = new
   // MotionMagicVelocityVoltage(0);/
-  final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
-  final MotionMagicVelocityVoltage intakeRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
 
   public AngularVelocity getFlyWheelSpeeds() {
     if (Robot.isSimulation()) {
