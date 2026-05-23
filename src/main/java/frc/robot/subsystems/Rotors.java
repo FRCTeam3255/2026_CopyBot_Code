@@ -20,8 +20,8 @@ public class Rotors extends SubsystemBase {
   final TalonFX intakeRollersEast = new TalonFX(rotorIDs.INTAKE_ROLLERS_EAST_CAN);
   final TalonFX transferRollersWest = new TalonFX((rotorIDs.TRANSFER_ROLLERS_WEST_CAN));
   final TalonFX transferRollersEast = new TalonFX((rotorIDs.TRANSFER_ROLLERS_EAST_CAN));
-  final TalonFX flywheelRollersWest = new TalonFX((rotorIDs.FLYWHEEL_WEST_CAN));
-  final TalonFX flywheelRollersEast = new TalonFX((rotorIDs.FLYWHEEL_EAST_CAN));
+  final TalonFX flywheelWest = new TalonFX((rotorIDs.FLYWHEEL_WEST_CAN));
+  final TalonFX flywheelEast = new TalonFX((rotorIDs.FLYWHEEL_EAST_CAN));
   final TalonFX flywheelWestFollower = new TalonFX((rotorIDs.FLYWHEEL_WEST_FOLLOWER_CAN));
   final TalonFX flywheelEastFollower = new TalonFX(rotorIDs.FLYWHEEL_EAST_FOLLOWER_CAN);
 
@@ -32,8 +32,8 @@ public class Rotors extends SubsystemBase {
     intakeRollersWest.getConfigurator().apply(ConstRotors.INTAKE_ROLLERS_WEST_CONFIGURATION);
     transferRollersEast.getConfigurator().apply(ConstRotors.TRANSFER_ROLLERS_EAST_CONFIGURATION);
     transferRollersWest.getConfigurator().apply(ConstRotors.TRANSFER_ROLLERS_WEST_CONFIGURATION);
-    flywheelRollersEast.getConfigurator().apply(ConstRotors.FLYWHEEL_ROLLERS_EAST_CONFIGURATION);
-    flywheelRollersWest.getConfigurator().apply(ConstRotors.FLYWHEEL_ROLLERS_WEST_CONFIGURATION);
+    flywheelEast.getConfigurator().apply(ConstRotors.FLYWHEEL_EAST_CONFIGURATION);
+    flywheelWest.getConfigurator().apply(ConstRotors.FLYWHEEL_WEST_CONFIGURATION);
     flywheelEastFollower.getConfigurator().apply(ConstRotors.FLYWHEEL_EAST_FOLLOWER_CONFIGURATION);
     flywheelWestFollower.getConfigurator().apply(ConstRotors.FLYWHEEL_WEST_FOLLOWER_CONFIGURATION);
   }
@@ -58,12 +58,12 @@ public class Rotors extends SubsystemBase {
     return transferRollersWest.getVelocity().getValue();
   }
 
-  public AngularVelocity getFlywheelRollersEastVelocity() {
-    return flywheelRollersEast.getVelocity().getValue();
+  public AngularVelocity getFlywheelEastVelocity() {
+    return flywheelEast.getVelocity().getValue();
   }
 
-  public AngularVelocity getFlywheelRollersWestVelocity() {
-    return flywheelRollersWest.getVelocity().getValue();
+  public AngularVelocity getFlywheelWestVelocity() {
+    return flywheelWest.getVelocity().getValue();
   }
 
   public AngularVelocity getFlywheelEastFollowerVelocity() {
@@ -94,12 +94,12 @@ public class Rotors extends SubsystemBase {
     transferRollersWest.set(speed);
   }
 
-  public void flywheelRollersEastSpeed(double speed) {
-    flywheelRollersEast.set(speed);
+  public void flywheelEastSpeed(double speed) {
+    flywheelEast.set(speed);
   }
 
-  public void flywheelRollersWestSpeed(double speed) {
-    flywheelRollersWest.set(speed);
+  public void flywheelWestSpeed(double speed) {
+    flywheelWest.set(speed);
   }
 
   public void flywheelWestFollowerSpeed(double speed) {
