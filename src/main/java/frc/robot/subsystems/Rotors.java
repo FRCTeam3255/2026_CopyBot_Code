@@ -5,17 +5,19 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.AngularVelocity;
-import edu.wpi.first.units.measure.Velocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs.rotorIDs;
+import frc.robot.Robot;
 import frc.robot.constants.ConstRotors;
 
 @Logged
 public class Rotors extends SubsystemBase {
+
   final TalonFX serializerRollers = new TalonFX(rotorIDs.SERIALIZER_ROLLERS_CAN);
   final TalonFX intakeRollersWest = new TalonFX(rotorIDs.INTAKE_ROLLERS_WEST_CAN);
   final TalonFX intakeRollersEast = new TalonFX(rotorIDs.INTAKE_ROLLERS_EAST_CAN);
@@ -25,11 +27,15 @@ public class Rotors extends SubsystemBase {
   final TalonFX flywheelTopEast = new TalonFX((rotorIDs.FLYWHEEL_TOP_EAST_CAN));
   final TalonFX flywheelBottomWest = new TalonFX((rotorIDs.FLYWHEEL_BOTTOM_WEST_CAN));
   final TalonFX flywheelBottomEast = new TalonFX((rotorIDs.FLYWHEEL_BOTTOM_EAST_CAN));
+  AngularVelocity lastDesiredFlyWheelSpeed = Units.RPM.of(0);
+  AngularVelocity lastDesiredTransferRollersSpeed = Units.RPM.of(0);
+  Follower flywheelEastFollower = new Follower(flywheelTopEast.getDeviceID(), false);
+  Follower flywheelWestFollower = new Follower(flywheelTopWest.getDeviceID(), false);
+  Follower transferRollersEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
+  Follower intakeRollerEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
+  private boolean flyWheelAtSpeed = false;
+  // private boolean intakeRollersAtSpeed = false;/
 
-  final Follower flywheelEastFollower = new Follower(flywheelTopEast.getDeviceID(), false);
-  final Follower flywheelWestFollower = new Follower(flywheelTopWest.getDeviceID(), false);
-
-  /** Creates a new Rotors. */
   public Rotors() {
     serializerRollers.getConfigurator().apply(ConstRotors.SERIALIZER_ROLLERS_CONFIGURATION);
     intakeRollersEast.getConfigurator().apply(ConstRotors.INTAKE_ROLLERS_EAST_CONFIGURATION);
@@ -42,6 +48,17 @@ public class Rotors extends SubsystemBase {
     flywheelBottomWest.getConfigurator().apply(ConstRotors.FLYWHEEL_WEST_CONFIGURATION);
   }
 
+  // final MotionMagicVelocityVoltage TransferVelocityRequest = new
+  // MotionMagicVelocityVoltage(0);/
+  final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+
+  public AngularVelocity getFlyWheelSpeeds() {
+    if (Robot.isSimulation()) {
+      return lastDesiredFlyWheelSpeed;
+    }
+    return flywheelTopEast.getVelocity().getValue();
+  }
+
   public AngularVelocity getSerializerRollersVelocity() {
     return serializerRollers.getVelocity().getValue();
   }
@@ -51,70 +68,67 @@ public class Rotors extends SubsystemBase {
   }
 
   public AngularVelocity getIntakeRollersWestVelocity() {
-    return intakeRollersWest.getVelocity().getValue();
+    return intakeRollersEast.getVelocity().getValue();
   }
 
-  public AngularVelocity getTransferRollersEastVelocity() {
+  public AngularVelocity getTransferRollersVelocity() {
     return transferRollersEast.getVelocity().getValue();
   }
 
   public AngularVelocity getTransferRollersWestVelocity() {
-    return transferRollersWest.getVelocity().getValue();
+    return transferRollersEast.getVelocity().getValue();
   }
 
   public AngularVelocity getFlywheelEastVelocity() {
-    return flywheelEast.getVelocity().getValue();
+    return flywheelTopEast.getVelocity().getValue();
   }
 
   public AngularVelocity getFlywheelWestVelocity() {
-    return flywheelWest.getVelocity().getValue();
+    return flywheelTopWest.getVelocity().getValue();
   }
 
   public AngularVelocity getFlywheelEastFollowerVelocity() {
-    return flywheelEastFollower.getVelocity().getValue();
+    return flywheelBottomEast.getVelocity().getValue();
   }
 
   public AngularVelocity getFlywheelWestFollowerVelocity() {
-    return flywheelWestFollower.getVelocity().getValue();
+    return flywheelBottomWest.getVelocity().getValue();
   }
 
   public void setSerializerRollersSpeed(double speed) {
     serializerRollers.set(speed);
   }
 
-  public void setIntakeRollersEastSpeed(double speed) {
+  public void setIntakeRollersSpeeds(double speed) {
     intakeRollersEast.set(speed);
+    intakeRollersWest.setControl(intakeRollerEastFollower);
   }
 
-  public void setIntakeRollersWestSpeed(double speed) {
-    intakeRollersWest.set(speed);
-  }
-
-  public void setTransferRollersEastSpeed(double speed) {
+  public void setTransferRollersSpeeds(double speed) {
     transferRollersEast.set(speed);
+    transferRollersWest.setControl(transferRollersEastFollower);
   }
 
-  public void setTransferRollersWestSpeed(double speed) {
-    transferRollersWest.set(speed);
+  public void setFlywheelSpeeds(AngularVelocity speed) {
+    flywheelTopEast.setControl(flyWheelVelocityRequest.withVelocity(speed));
+    flywheelTopWest.setControl(flyWheelVelocityRequest.withVelocity(speed));
+    flywheelBottomWest.setControl(flywheelWestFollower);
+    flywheelBottomEast.setControl(flywheelEastFollower);
+    lastDesiredFlyWheelSpeed = speed;
   }
 
-  public void setFlywheelEastSpeed(double speed) {
-    flywheelEast.set(speed);
+  public boolean isFlyWheelAtSpeed(AngularVelocity tolerance) {
+    AngularVelocity lowerLim = lastDesiredFlyWheelSpeed.minus(tolerance);
+    AngularVelocity upperLim = lastDesiredFlyWheelSpeed.plus(tolerance);
+
+    AngularVelocity flyWheelSpeed = getFlyWheelSpeeds();
+
+    flyWheelAtSpeed = flyWheelSpeed.gte(lowerLim)
+        && flyWheelSpeed.lte(upperLim);
+    return flyWheelAtSpeed;
+
   }
 
-  public void setFlywheelWestSpeed(double speed) {
-    flywheelWest.set(speed);
-  }
-
-  public void setFlywheelWestFollowerSpeed(double speed) {
-    flywheelWestFollower.set(speed);
-  }
-
-  public void setFlywheelEastFollowerSpeed(double speed) {
-    flywheelEastFollower.set(speed);
-  }
-
-  @Override
   public void periodic() {
 
   }
