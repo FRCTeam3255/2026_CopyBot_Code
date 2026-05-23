@@ -72,10 +72,10 @@ public class Motion extends SubsystemBase {
     Angle lowerlim = lastDesiredHoodPivotAngle.minus(tolerance);
     Angle upperlim = lastDesiredHoodPivotAngle.plus(tolerance);
 
-    Angle pivotAngle = getPivotAngle();
+    Angle hoodPivotAngle = getPivotAngle();
 
-    hoodAtPostion = pivotAngle.gte(lowerlim)
-        && pivotAngle.lte(upperlim);
+    hoodAtPostion = hoodPivotAngle.gte(lowerlim)
+        && hoodPivotAngle.lte(upperlim);
     return hoodAtPostion;
   }
 
@@ -83,10 +83,10 @@ public class Motion extends SubsystemBase {
     Angle lowerlim = lastDesiredIntakePivotAngle.minus(tolerance);
     Angle upperlim = lastDesiredIntakePivotAngle.plus(tolerance);
 
-    Angle pivotAngle = getPivotAngle();
+    Angle intakePivotAngle = getPivotAngle();
 
-    intakePivotAtPosition = pivotAngle.gte(lowerlim)
-        && pivotAngle.lte(upperlim);
+    intakePivotAtPosition = intakePivotAngle.gte(lowerlim)
+        && intakePivotAngle.lte(upperlim);
     return intakePivotAtPosition;
   }
 

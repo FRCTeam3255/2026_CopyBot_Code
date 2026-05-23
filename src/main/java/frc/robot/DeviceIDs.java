@@ -43,7 +43,7 @@ public class DeviceIDs {
 
   // Motion Profile IDs: 30~49
   public static class motionIDs {
-    public static final int HOOD_PIVOT_CAN = 30;
-    public static final int INTAKE_PIVOT_CAN = 31;
+    public static final int HOOD_PIVOT_CAN = 32;
+    public static final int INTAKE_PIVOT_CAN = 30;
   }
 }
