@@ -78,35 +78,35 @@ public class Rotors extends SubsystemBase {
     serializerRollers.set(speed);
   }
 
-  public void intakeRollersEastSpeed(double speed) {
+  public void setIntakeRollersEastSpeed(double speed) {
     intakeRollersEast.set(speed);
   }
 
-  public void intakeRollersWestSpeed(double speed) {
+  public void setIntakeRollersWestSpeed(double speed) {
     intakeRollersWest.set(speed);
   }
 
-  public void transferRollersEastSpeed(double speed) {
+  public void setTransferRollersEastSpeed(double speed) {
     transferRollersEast.set(speed);
   }
 
-  public void transferRollersWestSpeed(double speed) {
+  public void setTransferRollersWestSpeed(double speed) {
     transferRollersWest.set(speed);
   }
 
-  public void flywheelEastSpeed(double speed) {
+  public void setFlywheelEastSpeed(double speed) {
     flywheelEast.set(speed);
   }
 
-  public void flywheelWestSpeed(double speed) {
+  public void setFlywheelWestSpeed(double speed) {
     flywheelWest.set(speed);
   }
 
-  public void flywheelWestFollowerSpeed(double speed) {
+  public void setFlywheelWestFollowerSpeed(double speed) {
     flywheelWestFollower.set(speed);
   }
 
-  public void flywheelEastFollowerSpeed(double speed) {
+  public void setFlywheelEastFollowerSpeed(double speed) {
     flywheelEastFollower.set(speed);
   }
 
