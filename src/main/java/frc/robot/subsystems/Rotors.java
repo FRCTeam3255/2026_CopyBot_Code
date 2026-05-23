@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.epilogue.Logged;
@@ -20,10 +21,13 @@ public class Rotors extends SubsystemBase {
   final TalonFX intakeRollersEast = new TalonFX(rotorIDs.INTAKE_ROLLERS_EAST_CAN);
   final TalonFX transferRollersWest = new TalonFX((rotorIDs.TRANSFER_ROLLERS_WEST_CAN));
   final TalonFX transferRollersEast = new TalonFX((rotorIDs.TRANSFER_ROLLERS_EAST_CAN));
-  final TalonFX flywheelWest = new TalonFX((rotorIDs.FLYWHEEL_WEST_CAN));
-  final TalonFX flywheelEast = new TalonFX((rotorIDs.FLYWHEEL_EAST_CAN));
-  final TalonFX flywheelWestFollower = new TalonFX((rotorIDs.FLYWHEEL_WEST_FOLLOWER_CAN));
-  final TalonFX flywheelEastFollower = new TalonFX(rotorIDs.FLYWHEEL_EAST_FOLLOWER_CAN);
+  final TalonFX flywheelTopWest = new TalonFX((rotorIDs.FLYWHEEL_TOP_WEST_CAN));
+  final TalonFX flywheelTopEast = new TalonFX((rotorIDs.FLYWHEEL_TOP_EAST_CAN));
+  final TalonFX flywheelBottomWest = new TalonFX((rotorIDs.FLYWHEEL_BOTTOM_WEST_CAN));
+  final TalonFX flywheelBottomEast = new TalonFX((rotorIDs.FLYWHEEL_BOTTOM_EAST_CAN));
+
+  final Follower flywheelEastFollower = new Follower(flywheelTopEast.getDeviceID(), false);
+  final Follower flywheelWestFollower = new Follower(flywheelTopWest.getDeviceID(), false);
 
   /** Creates a new Rotors. */
   public Rotors() {
@@ -32,10 +36,10 @@ public class Rotors extends SubsystemBase {
     intakeRollersWest.getConfigurator().apply(ConstRotors.INTAKE_ROLLERS_WEST_CONFIGURATION);
     transferRollersEast.getConfigurator().apply(ConstRotors.TRANSFER_ROLLERS_EAST_CONFIGURATION);
     transferRollersWest.getConfigurator().apply(ConstRotors.TRANSFER_ROLLERS_WEST_CONFIGURATION);
-    flywheelEast.getConfigurator().apply(ConstRotors.FLYWHEEL_EAST_CONFIGURATION);
-    flywheelWest.getConfigurator().apply(ConstRotors.FLYWHEEL_WEST_CONFIGURATION);
-    flywheelEastFollower.getConfigurator().apply(ConstRotors.FLYWHEEL_EAST_FOLLOWER_CONFIGURATION);
-    flywheelWestFollower.getConfigurator().apply(ConstRotors.FLYWHEEL_WEST_FOLLOWER_CONFIGURATION);
+    flywheelTopEast.getConfigurator().apply(ConstRotors.FLYWHEEL_EAST_CONFIGURATION);
+    flywheelTopWest.getConfigurator().apply(ConstRotors.FLYWHEEL_WEST_CONFIGURATION);
+    flywheelBottomEast.getConfigurator().apply(ConstRotors.FLYWHEEL_EAST_CONFIGURATION);
+    flywheelBottomWest.getConfigurator().apply(ConstRotors.FLYWHEEL_WEST_CONFIGURATION);
   }
 
   public AngularVelocity getSerializerRollersVelocity() {
