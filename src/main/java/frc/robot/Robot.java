@@ -6,29 +6,32 @@ package frc.robot;
 
 import edu.wpi.first.epilogue.Epilogue;
 import edu.wpi.first.epilogue.Logged;
-import edu.wpi.first.epilogue.NotLogged;
 import edu.wpi.first.net.WebServer;
-import edu.wpi.first.units.measure.MutCurrent;
-import edu.wpi.first.units.measure.MutVoltage;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.PubSubOption;
+import edu.wpi.first.networktables.StringPublisher;
+import edu.wpi.first.networktables.StringTopic;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.PowerDistribution;
-import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.constants.ConstField;
 import frc.robot.constants.ConstSystem;
-import edu.wpi.first.cameraserver.CameraServer;
+import frc.robot.constants.ConstVision;
+import com.frcteam3255.utils.LimelightHelpers;
 
 @Logged
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private final StringTopic selectedTabTopic = NetworkTableInstance.getDefault()
+      .getStringTopic("/Elastic/SelectedTab");
+  private final StringPublisher selectedTabPublisher = selectedTabTopic
+      .publish(PubSubOption.keepDuplicates(true));
 
   @Override
   public void robotInit() {
@@ -49,6 +52,10 @@ public class Robot extends TimedRobot {
     DriverStation.silenceJoystickConnectionWarning(ConstSystem.constControllers.SILENCE_JOYSTICK_WARNINGS);
   }
 
+  public void selectTab(String tabName) {
+    selectedTabPublisher.set(tabName);
+  }
+
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
@@ -56,24 +63,46 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
+    selectTab("Disabled");
+    LimelightHelpers.SetIMUAssistAlpha(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.IMU_ASSIST_ALPHA_VALUE);
+    LimelightHelpers.SetIMUAssistAlpha(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.IMU_ASSIST_ALPHA_VALUE);
+    LimelightHelpers.SetIMUAssistAlpha(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.IMU_ASSIST_ALPHA_VALUE);
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.DisabledThrottle);
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.DisabledThrottle);
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.DisabledThrottle);
+    m_robotContainer.visionInstance.setIMUAssistMode(false);
   }
 
   @Override
   public void disabledPeriodic() {
     ConstField.ALLIANCE = DriverStation.getAlliance();
     SmartDashboard.putString("ALLIANCE", ConstField.ALLIANCE.toString());
+    double yaw = m_robotContainer.drivetrainInstance.getPose().getRotation().getDegrees();
+    LimelightHelpers.SetRobotOrientation(ConstVision.LIMELIGHT_RIGHT_NAME,
+        yaw, 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(ConstVision.LIMELIGHT_LEFT_NAME,
+        yaw, 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(ConstVision.LIMELIGHT_BACK_NAME,
+        yaw, 0, 0, 0, 0, 0);
+
   }
 
   @Override
   public void disabledExit() {
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.TeleopThrottle);
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.TeleopThrottle);
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.TeleopThrottle);
+    m_robotContainer.visionInstance.setIMUAssistMode(true);
+    m_robotContainer.addVisionMeasurement().schedule();
   }
 
   @Override
   public void autonomousInit() {
+    selectTab("Autonomous");
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+      CommandScheduler.getInstance().schedule(m_autonomousCommand);
     }
   }
 
@@ -87,6 +116,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    selectTab("Teleoperated");
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

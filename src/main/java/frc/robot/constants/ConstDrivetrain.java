@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.KilogramSquareMeters;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.Rotations;
+import static edu.wpi.first.units.Units.Seconds;
 import static edu.wpi.first.units.Units.Volts;
 
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
@@ -18,6 +19,8 @@ import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants.ClosedLoopOutputType;
+import com.frcteam3255.components.swerve.SN_SwerveConstants.ModuleLocations;
+import com.frcteam3255.components.swerve.SN_SwerveConstants.Ratios;
 
 import edu.wpi.first.math.controller.HolonomicDriveController;
 import edu.wpi.first.math.controller.PIDController;
@@ -30,6 +33,7 @@ import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.MomentOfInertia;
+import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.units.measure.Voltage;
 
 /**
@@ -48,60 +52,22 @@ import edu.wpi.first.units.measure.Voltage;
  * easier to update configuration values in a single location.
  */
 public class ConstDrivetrain {
+  public static final double ROTATION_STICK_DEADBAND = 0.05;
+  public static final Time ROTATION_DELAY = Seconds.of(0.5);
+
   // TODO: Swoffsets
   public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.178466796875);
   public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.498779296875);
   public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.459716796875);
   public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.31201171875);
 
-  // ====== TO MOVE TO SUPERCODE - START ======
-  public static class ModuleLocations {
-    public static final Distance frame25x25 = Inches.of(19.75).div(2);
-    public static final Distance frame29x29 = Inches.of(23.75).div(2);
+  public static class PRACTICE_BOT {
+    // TODO: Swoffsets
+    public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.199462890625);
+    public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(0.474365234375);
+    public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.447265625);
+    public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.3193359375);
   }
-
-  public static class Ratios {
-    private final double steer;
-    private final double drive;
-    private final double couple;
-
-    public Ratios(double steer, double drive, double couple) {
-      this.steer = steer;
-      this.drive = drive;
-      this.couple = couple;
-    }
-
-    public double getSteer() {
-      return steer;
-    }
-
-    public double getDrive() {
-      return drive;
-    }
-
-    public double getCouple() {
-      return couple;
-    }
-
-    public static class MK4I {
-      private static final double stage1 = 1. / (14. / 50.);
-      private static final double stage2L1 = 1. / (25. / 19.);
-      private static final double stage2L2 = 1. / (27. / 17.);
-      private static final double stage2L3 = 1. / (28. / 16.);
-      private static final double stage3 = 1. / (15. / 45.);
-      private static final double steer = 150. / 7.;
-
-      private static final double driveL1 = stage1 * stage2L1 * stage3;
-      private static final double driveL2 = stage1 * stage2L2 * stage3;
-      private static final double driveL3 = stage1 * stage2L3 * stage3;
-      private static final double couple = stage1;
-
-      public static final Ratios L1 = new Ratios(steer, driveL1, couple);
-      public static final Ratios L2 = new Ratios(steer, driveL2, couple);
-      public static final Ratios L3 = new Ratios(steer, driveL3, couple);
-    }
-  }
-  // ====== TO MOVE TO SUPERCODE - END ======
 
   public static final double SLOW_MODE_MULTIPLIER = 0.5;
 
@@ -242,5 +208,14 @@ public class ConstDrivetrain {
     public static final Voltage kSteerFrictionVoltage = Volts.of(0.2);
     public static final Voltage kDriveFrictionVoltage = Volts.of(0.2);
   }
+
+  public static class ROTATION_PID {
+    public static final double kP = 5.0;
+    public static final double kI = 0.0;
+    public static final double kD = 0;
+  }
+
+  public static double isStickHitHighTol = 1.15;
+  public static double isStickHitLowTol = 0.15;
 
 }

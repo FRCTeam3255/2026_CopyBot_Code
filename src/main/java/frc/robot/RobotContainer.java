@@ -12,18 +12,18 @@ import com.frcteam3255.joystick.SN_XboxController;
 import choreo.auto.AutoFactory;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.epilogue.NotLogged;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.states.Intaking;
 import frc.robot.commands.states.RetractIntake;
+import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
 import frc.robot.subsystems.DriverStateMachine.DriverState;
@@ -33,6 +33,7 @@ import frc.robot.subsystems.RobotPoses;
 import frc.robot.subsystems.Rotors;
 import frc.robot.subsystems.StateMachine;
 import frc.robot.subsystems.StateMachine.RobotState;
+import frc.robot.subsystems.Telemetry;
 import frc.robot.subsystems.Vision;
 
 @Logged
@@ -45,60 +46,59 @@ public class RobotContainer {
   private final SN_XboxController conDriver = new SN_XboxController(controllerIDs.DRIVER_USB);
 
   public static final Rotors rotorsInstance = new Rotors();
-  public static final Motion motionInstance = new Motion();
   private final Rotors loggedRotorsInstance = rotorsInstance;
+  public static final Motion motionInstance = new Motion();
   private final Motion loggedMotionInstance = motionInstance;
-  public static final Drivetrain subDrivetrain = new Drivetrain();
-  private final Drivetrain loggedSubDrivetrain = subDrivetrain;
-  public static final DriverStateMachine subDriverStateMachine = new DriverStateMachine(subDrivetrain);
-  private final DriverStateMachine loggedSubDriverStateMachine = subDriverStateMachine;
-  public static final StateMachine subStateMachine = new StateMachine(subDrivetrain);
-  private final StateMachine loggedSubStateMachine = subStateMachine;
-  public static final RobotPoses robotPose = new RobotPoses(subDrivetrain);
+  public static final Drivetrain drivetrainInstance = new Drivetrain();
+  private final Drivetrain loggedDrivetrainInstance = drivetrainInstance;
+  public static final DriverStateMachine driverStateMachineInstance = new DriverStateMachine();
+  private final DriverStateMachine loggedDriverStateMachineInstance = driverStateMachineInstance;
+  public static final StateMachine stateMachineInstance = new StateMachine();
+  private final StateMachine loggedStateMachineInstance = stateMachineInstance;
+  public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
-  public static final Vision subVision = new Vision();
-  private final Vision loggedSubVision = subVision;
   public static final Intaking intakingInstance = new Intaking();
   public static final RetractIntake RetractingInstance = new RetractIntake();
+  public static final Vision visionInstance = new Vision();
+  private final Vision loggedVisionInstance = visionInstance;
+  public static final Telemetry telemetryInstance = new Telemetry();
+  private final Telemetry loggedTelemetryInstance = telemetryInstance;
+
   Command TRY_NONE = Commands.deferredProxy(
-      () -> subStateMachine.tryState(RobotState.NONE));
+      () -> stateMachineInstance.tryState(RobotState.NONE));
 
   Command MANUAL = new DeferredCommand(
-      subDriverStateMachine.tryState(
+      driverStateMachineInstance.tryState(
           DriverStateMachine.DriverState.MANUAL,
           conDriver.axis_LeftY,
           conDriver.axis_LeftX,
           conDriver.axis_RightX,
           conDriver.btn_RightBumper),
-      Set.of(subDriverStateMachine));
+      Set.of(driverStateMachineInstance));
 
   Command EXAMPLE_POSE_DRIVE = new DeferredCommand(
-      subDriverStateMachine.tryState(
+      driverStateMachineInstance.tryState(
           DriverStateMachine.DriverState.EXAMPLE_POSE_DRIVE,
           conDriver.axis_LeftY,
           conDriver.axis_LeftX,
           conDriver.axis_RightX,
           conDriver.btn_RightBumper),
-      Set.of(subDriverStateMachine));
+      Set.of(driverStateMachineInstance));
 
   public RobotContainer() {
     conDriver.setLeftDeadband(constControllers.DRIVER_LEFT_STICK_DEADBAND);
 
-    subDriverStateMachine
+    driverStateMachineInstance
         .setDefaultCommand(MANUAL);
 
     configDriverBindings();
     configOperatorBindings();
     configAutonomous();
-
-    // subDrivetrain.resetModulesToAbsolute();
+    RobotController.setBrownoutVoltage(5.5);
+    // drivetrainInstance.resetModulesToAbsolute();
   }
 
   private void configDriverBindings() {
-    // conDriver.btn_B.onTrue(Commands.runOnce(() ->
-    // subDrivetrain.resetModulesToAbsolute()));
-    conDriver.btn_Back
-        .onTrue(Commands.runOnce(() -> subDrivetrain.resetPose(new Pose2d(0, 0, new Rotation2d()))));
     conDriver.btn_RightTrigger
         .whileTrue(intakingInstance);
     conDriver.btn_LeftTrigger
@@ -106,7 +106,7 @@ public class RobotContainer {
     // Example Pose Drive
     conDriver.btn_X
         .whileTrue(EXAMPLE_POSE_DRIVE)
-        .onFalse(Commands.runOnce(() -> subDriverStateMachine.setDriverState(DriverState.MANUAL)));
+        .onFalse(Commands.runOnce(() -> driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
   }
 
   private void configOperatorBindings() {
@@ -115,11 +115,11 @@ public class RobotContainer {
 
   public void configAutonomous() {
     autoFactory = new AutoFactory(
-        subDrivetrain::getPose, // A function that returns the current robot pose
-        subDrivetrain::resetPose, // A function that resets the current robot pose to the provided Pose2d
-        subDrivetrain::followTrajectory, // The drive subsystem trajectory follower
+        drivetrainInstance::getPose, // A function that returns the current robot pose
+        drivetrainInstance::resetPose, // A function that resets the current robot pose to the provided Pose2d
+        drivetrainInstance::followTrajectory, // The drive subsystem trajectory follower
         true, // If alliance flipping should be enabled
-        subDriverStateMachine // The drive subsystem
+        driverStateMachineInstance // The drive subsystem
     );
 
     // make our entries name
@@ -131,10 +131,9 @@ public class RobotContainer {
     autoChooser.onChange(selectedAuto -> {
       String startingPose = autoStartingPoses.get(selectedAuto);
       // if there is a stating pose, reset to it
-      if (startingPose != null) {
-        autoFactory.resetOdometry(startingPose)
-            .ignoringDisable(true) // Run even when disabled
-            .schedule();
+      if (startingPose != null) { // Run even when disabled
+        CommandScheduler.getInstance().schedule(autoFactory.resetOdometry(startingPose)
+            .ignoringDisable(true));
       }
     });
 
@@ -149,7 +148,7 @@ public class RobotContainer {
 
   public Command runPath(String pathName) {
     return autoFactory.trajectoryCmd(pathName).asProxy()
-        .alongWith(Commands.runOnce(() -> subDriverStateMachine.setDriverState(DriverState.CHOREO)));
+        .alongWith(Commands.runOnce(() -> driverStateMachineInstance.setDriverState(DriverState.CHOREO)));
   }
 
   public Command getAutonomousCommand() {
@@ -157,11 +156,23 @@ public class RobotContainer {
   }
 
   public RobotState getRobotState() {
-    return subStateMachine.getRobotState();
+    return stateMachineInstance.getRobotState();
+  }
+
+  public String robotStateToString() {
+    return stateMachineInstance.getRobotState().toString();
+  }
+
+  public String driverStateToString() {
+    return driverStateMachineInstance.getDriverState().toString();
   }
 
   public Command addVisionMeasurement() {
-    return new AddVisionMeasurement(subDrivetrain, subVision)
+    return new AddVisionMeasurement()
         .withInterruptBehavior(Command.InterruptionBehavior.kCancelIncoming).ignoringDisable(true);
+  }
+
+  public static boolean isPracticeBot() {
+    return RobotController.getSerialNumber().equals(ConstSystem.PRACTICE_BOT_RIO);
   }
 }
