@@ -9,6 +9,8 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.units.Units;
 
 public final class ConstSystem {
+
+  public static final String PRACTICE_BOT_RIO = ""; // TODO: Replace with actual RIO name
   /**
    * Volts
    */
@@ -20,5 +22,4 @@ public final class ConstSystem {
     public static final double DRIVER_LEFT_STICK_DEADBAND = 0.05;
     public static final boolean SILENCE_JOYSTICK_WARNINGS = true;
   }
-
 }
