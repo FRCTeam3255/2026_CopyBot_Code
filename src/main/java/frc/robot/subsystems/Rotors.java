@@ -4,10 +4,11 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
+
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.AngularVelocity;
@@ -30,10 +31,10 @@ public class Rotors extends SubsystemBase {
   final TalonFX flywheelBottomEast = new TalonFX((rotorIDs.FLYWHEEL_BOTTOM_EAST_CAN));
   AngularVelocity lastDesiredFlyWheelSpeed = Units.RPM.of(0);
   AngularVelocity lastDesiredTransferRollersSpeed = Units.RPM.of(0);
-  Follower flywheelEastFollower = new Follower(flywheelTopEast.getDeviceID(), false);
-  Follower flywheelWestFollower = new Follower(flywheelTopEast.getDeviceID(), true);
-  Follower transferRollersEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
-  Follower intakeRollerEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
+  Follower flywheelEastFollower = new Follower(flywheelTopEast.getDeviceID(), MotorAlignmentValue.Aligned);
+  Follower flywheelWestFollower = new Follower(flywheelTopEast.getDeviceID(), MotorAlignmentValue.Opposed);
+  Follower transferRollersEastFollower = new Follower(intakeRollersEast.getDeviceID(), MotorAlignmentValue.Opposed);
+  Follower intakeRollerEastFollower = new Follower(intakeRollersEast.getDeviceID(), MotorAlignmentValue.Opposed);
   final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage transferRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage serializerVelocityRequest = new MotionMagicVelocityVoltage(0);

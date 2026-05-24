@@ -16,8 +16,6 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 
-import edu.wpi.first.units.measure.Angle;
-
 /** Add your docs here. */
 public class ConstMotion {
   public static final TalonFXConfiguration INTAKE_PIVOT_CONFIGURATION = new TalonFXConfiguration();
