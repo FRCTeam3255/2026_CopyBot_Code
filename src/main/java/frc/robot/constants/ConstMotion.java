@@ -15,5 +15,5 @@ public class ConstMotion {
   public static final double STOP = 0;
   public static final TalonFXConfiguration INTAKE_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
-  public static final Angle HOOD_PIVOT_ANGLE = Degrees.of(0);
+  public static final Angle HOOD_PIVOT_ANGLE = Degrees.of(14);
 }
