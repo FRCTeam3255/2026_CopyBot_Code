@@ -25,9 +25,15 @@ public class Shooting extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
     RobotContainer.rotorsInstance.setFlywheelSpeeds(ConstRotors.FLYWHEEL_SHOOTING_SPEED);
-    RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.INTAKE_TRANSFER_SPEED);
-    RobotContainer.rotorsInstance.setSerializerRollersSpeed(ConstRotors.SERIALIZER_SHOOTING_SPEED);
+    if (RobotContainer.rotorsInstance.isFlyWheelAtSpeed(ConstRotors.FLYWHEEL_SHOOTING_SPEED)) {
+      RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.INTAKE_TRANSFER_SPEED);
+      RobotContainer.rotorsInstance.setSerializerRollersSpeed(ConstRotors.SERIALIZER_SHOOTING_SPEED);
+
+    } else {
+      RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.STOP_ALL);
+    }
 
   }
 
@@ -37,11 +43,6 @@ public class Shooting extends Command {
     RobotContainer.rotorsInstance.setFlywheelSpeeds(ConstRotors.STOP_ALL);
     RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.STOP_ALL);
     RobotContainer.rotorsInstance.setSerializerRollersSpeed(ConstRotors.STOP_ALL);
-    if (RobotContainer.rotorsInstance.isFlyWheelAtSpeed(null))
-      ;
-    {
-
-    }
 
   }
 
