@@ -20,7 +20,7 @@ public class ConstRotors {
   public static final TalonFXConfiguration TRANSFER_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
-  public static final AngularVelocity INTAKE_ROLLERS_INTAKING = Units.RPM.of(4000);
+  public static final AngularVelocity INTAKE_ROLLERS_SPEED = Units.RPM.of(4000);
 
   static {
 
