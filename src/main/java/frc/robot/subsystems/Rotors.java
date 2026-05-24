@@ -33,6 +33,9 @@ public class Rotors extends SubsystemBase {
   Follower flywheelWestFollower = new Follower(flywheelTopEast.getDeviceID(), true);
   Follower transferRollersEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
   Follower intakeRollerEastFollower = new Follower(intakeRollersEast.getDeviceID(), true);
+  final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage transferRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage serializerVelocityRequest = new MotionMagicVelocityVoltage(0);
   private boolean flyWheelAtSpeed = false;
   // private boolean intakeRollersAtSpeed = false;/
 
@@ -50,7 +53,6 @@ public class Rotors extends SubsystemBase {
 
   // final MotionMagicVelocityVoltage TransferVelocityRequest = new
   // MotionMagicVelocityVoltage(0);/
-  final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
 
   public AngularVelocity getFlyWheelSpeeds() {
     if (Robot.isSimulation()) {
@@ -71,8 +73,8 @@ public class Rotors extends SubsystemBase {
     return transferRollersEast.getVelocity().getValue();
   }
 
-  public void setSerializerRollersSpeed(double speed) {
-    serializerRollers.set(speed);
+  public void setSerializerRollersSpeed(AngularVelocity speed) {
+    serializerRollers.setControl(serializerVelocityRequest.withVelocity(speed));
   }
 
   public void setIntakeRollersSpeeds(double speed) {
@@ -80,8 +82,8 @@ public class Rotors extends SubsystemBase {
     intakeRollersWest.setControl(intakeRollerEastFollower);
   }
 
-  public void setTransferRollersSpeeds(double speed) {
-    transferRollersEast.set(speed);
+  public void setTransferRollersSpeeds(AngularVelocity speed) {
+    transferRollersEast.setControl(transferRollersVelocityRequest.withVelocity(speed));
     transferRollersWest.setControl(transferRollersEastFollower);
   }
 
