@@ -12,6 +12,7 @@ import frc.robot.constants.ConstRotors;
 public class Intaking extends Command {
   /** Creates a new Intaking. */
   public Intaking() {
+    addRequirements(RobotContainer.stateMachineInstance);
   }
 
   // Called when the command is initially scheduled.
