@@ -6,6 +6,8 @@ package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstMotion;
+import frc.robot.constants.ConstRotors;
 import frc.robot.subsystems.*;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -22,6 +24,11 @@ public class None extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.NONE);
+    RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.STOP);
+    RobotContainer.motionInstance.setHoodPivotAngle(ConstMotion.NONE);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
