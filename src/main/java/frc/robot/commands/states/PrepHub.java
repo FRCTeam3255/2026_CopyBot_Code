@@ -6,9 +6,9 @@ package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class PrepDepot extends Command {
+public class PrepHub extends Command {
   /** Creates a new PrepDepot. */
-  public PrepDepot() {
+  public PrepHub() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
