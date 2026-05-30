@@ -1021,7 +1021,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "PrepOutpost"
+									"text": "PrepCorner"
 								}
 							]
 						}
@@ -1527,9 +1527,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 1437.7135323324935,
-			"y": 609.7763774002664,
-			"z": 0.5118547064274089,
+			"x": 2622.341679669581,
+			"y": 552.5721428142112,
+			"z": 0.1697572539181728,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
@@ -2479,9 +2479,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 35.6185390788759,
-			"y": -388.77198142774375,
-			"z": 0.45999600772910526,
+			"x": 206.3569147328484,
+			"y": 1852.994123336534,
+			"z": 0.12395093385564669,
 			"meta": {},
 			"id": "camera:page:grvVnvcP2QYOnDHPI3N7D",
 			"typeName": "camera"
@@ -4102,7 +4102,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "PrepDepot"
+									"text": "PrepTrench"
 								}
 							]
 						}
@@ -4755,55 +4755,6 @@
 			"typeName": "binding"
 		},
 		{
-			"x": 1491.9403107486967,
-			"y": 801.9492269705042,
-			"rotation": 0,
-			"isLocked": false,
-			"opacity": 1,
-			"meta": {},
-			"id": "shape:umL1XwXpphIIVogXlqhur",
-			"type": "geo",
-			"props": {
-				"w": 199,
-				"h": 64,
-				"geo": "rectangle",
-				"dash": "solid",
-				"growY": 26,
-				"url": "",
-				"scale": 1,
-				"color": "black",
-				"labelColor": "black",
-				"fill": "semi",
-				"size": "m",
-				"font": "mono",
-				"align": "middle",
-				"verticalAlign": "middle",
-				"richText": {
-					"type": "doc",
-					"attrs": {
-						"dir": "auto"
-					},
-					"content": [
-						{
-							"type": "paragraph",
-							"attrs": {
-								"dir": "auto"
-							},
-							"content": [
-								{
-									"type": "text",
-									"text": "PrepOpponentToAlliance"
-								}
-							]
-						}
-					]
-				}
-			},
-			"parentId": "page:Wfhj8q2d0tvavwNlrwo_4",
-			"index": "a93veXnV",
-			"typeName": "shape"
-		},
-		{
 			"meta": {},
 			"id": "binding:gvJ-9TZwEf1N2PqRgz7Mv",
 			"type": "arrow",
@@ -5197,6 +5148,55 @@
 			"typeName": "shape"
 		},
 		{
+			"x": 229.156591592332,
+			"y": 556.6181109224157,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:oWbO0p3d5-Do7I6M4YhSN",
+			"type": "geo",
+			"props": {
+				"w": 340.95818501915346,
+				"h": 91.375,
+				"geo": "rectangle",
+				"dash": "solid",
+				"growY": 0,
+				"url": "",
+				"scale": 1,
+				"color": "black",
+				"labelColor": "black",
+				"fill": "semi",
+				"size": "m",
+				"font": "mono",
+				"align": "middle",
+				"verticalAlign": "middle",
+				"richText": {
+					"type": "doc",
+					"attrs": {
+						"dir": "auto"
+					},
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "PrepOpponentToAllience"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "shape:uGRWI4m6QItFOSMyV6rxb",
+			"index": "aIXuxUml",
+			"typeName": "shape"
+		},
+		{
 			"meta": {},
 			"id": "page:grvVnvcP2QYOnDHPI3N7D",
 			"name": "State Transitions",
@@ -5290,7 +5290,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "PrepNeautralToAlliance"
+									"text": "PrepTower"
 								}
 							]
 						}
@@ -6186,7 +6186,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "PrepTrench"
+									"text": "PrepHub"
 								}
 							]
 						}
@@ -6253,7 +6253,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "PrepDepot"
+									"text": "PrepCorner"
 								}
 							]
 						}
@@ -6551,10 +6551,12 @@
 			"typeName": "binding"
 		},
 		{
-			"editingShapeId": null,
+			"editingShapeId": "shape:iv5HxmgE8cO6VlR2ztcz_",
 			"croppingShapeId": null,
-			"selectedShapeIds": [],
-			"hoveredShapeId": null,
+			"selectedShapeIds": [
+				"shape:iv5HxmgE8cO6VlR2ztcz_"
+			],
+			"hoveredShapeId": "shape:VVsLcsMmoUoFc0sDMQsVV",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -6654,7 +6656,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "PrepOutpost"
+									"text": "PrepHub"
 								}
 							]
 						}
@@ -6725,13 +6727,13 @@
 				"rotation": 0
 			},
 			"isFocusMode": false,
-			"exportBackground": false,
+			"exportBackground": true,
 			"isDebugMode": false,
 			"isToolLocked": false,
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1148,
+				"w": 660,
 				"h": 614
 			},
 			"insets": [
@@ -6749,7 +6751,7 @@
 			"isFocused": true,
 			"devicePixelRatio": 1,
 			"isCoarsePointer": false,
-			"isHoveringCanvas": true,
+			"isHoveringCanvas": false,
 			"openMenus": [],
 			"isChangingStyle": false,
 			"isReadonly": false,
@@ -6842,7 +6844,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "PrepNonOutpost"
+									"text": "PrepTower"
 								}
 							]
 						}
@@ -7569,9 +7571,9 @@
 			"typeName": "binding"
 		},
 		{
-			"x": -1270.9068628616665,
-			"y": 108.77784649388366,
-			"z": 0.460400531117024,
+			"x": -2733.4690724786497,
+			"y": -205.34068450972168,
+			"z": 0.6471544470914002,
 			"meta": {},
 			"id": "camera:page:Wfhj8q2d0tvavwNlrwo_4",
 			"typeName": "camera"
