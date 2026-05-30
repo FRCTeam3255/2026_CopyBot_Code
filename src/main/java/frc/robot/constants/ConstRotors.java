@@ -4,11 +4,10 @@
 
 package frc.robot.constants;
 
-import static edu.wpi.first.units.Units.Percent;
-
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.AngularVelocity;
 
@@ -28,6 +27,7 @@ public class ConstRotors {
   public static final AngularVelocity INTAKE_TRANSFER_SPEED = Units.RPM.of(3000);
   public static final double SERIALIZER_SHOOTING_SPEED = 0.5;
   public static final double STOP = 0;
+  public static final double REVERSE_SHOOTING_SPEED = -1;
   public static final double REVERSE_SERIALIZER_ROLLERS_SPEED = -0.5;
   public static final double REVERSE_INTAKE_ROLLERS_SPEED = -0.5;
   public static final double REVERSE_TRANSFER_ROLLERS_SPEED = -0.5;
