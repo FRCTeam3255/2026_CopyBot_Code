@@ -57,8 +57,8 @@ public class RobotContainer {
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
-  public static final Intaking intakingInstance = new Intaking();
-  public static final RetractIntake RetractingInstance = new RetractIntake();
+  public static final Intaking intaking = new Intaking();
+  public static final RetractIntake retracting = new RetractIntake();
   public static final Vision visionInstance = new Vision();
   private final Vision loggedVisionInstance = visionInstance;
   public static final Telemetry telemetryInstance = new Telemetry();
@@ -100,9 +100,9 @@ public class RobotContainer {
 
   private void configDriverBindings() {
     conDriver.btn_RightTrigger
-        .whileTrue(intakingInstance);
+        .whileTrue(intaking);
     conDriver.btn_LeftTrigger
-        .whileTrue(RetractingInstance);
+        .whileTrue(retracting);
     // Example Pose Drive
     conDriver.btn_X
         .whileTrue(EXAMPLE_POSE_DRIVE)
