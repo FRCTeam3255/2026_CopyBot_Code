@@ -23,14 +23,14 @@ public class Intaking extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.rotorsInstance.setIntakeRollersSpeeds(ConstRotors.INTAKE_ROLLERS_SPEED);
+    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.INTAKE_ROLLERS_SPEED);
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.rotorsInstance.setIntakeRollersSpeeds(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.STOP);
 
   }
 

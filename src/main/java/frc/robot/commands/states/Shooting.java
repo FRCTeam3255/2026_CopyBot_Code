@@ -29,10 +29,10 @@ public class Shooting extends Command {
     RobotContainer.rotorsInstance.setFlywheelSpeeds(ConstRotors.FLYWHEEL_SHOOTING_SPEED);
     if (RobotContainer.rotorsInstance.isFlyWheelAtSpeed(ConstRotors.FLYWHEEL_SHOOTING_SPEED)) {
       RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.INTAKE_TRANSFER_SPEED);
-      RobotContainer.rotorsInstance.setSerializerRollersSpeed(ConstRotors.SERIALIZER_SHOOTING_SPEED);
+      RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
 
     } else {
-      RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.STOP_ALL);
+      RobotContainer.rotorsInstance.setFlywheelPercentOutput(0.0);
     }
 
   }
@@ -40,9 +40,9 @@ public class Shooting extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.rotorsInstance.setFlywheelSpeeds(ConstRotors.STOP_ALL);
-    RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.STOP_ALL);
-    RobotContainer.rotorsInstance.setSerializerRollersSpeed(ConstRotors.STOP_ALL);
+    RobotContainer.rotorsInstance.setFlywheelPercentOutput(0.0);
+    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(0.0);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(0.0);
 
   }
 
