@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.Degrees;
+
 import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -94,4 +95,5 @@ public class Motion extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
 }
