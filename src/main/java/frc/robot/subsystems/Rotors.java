@@ -129,8 +129,4 @@ public class Rotors extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setFlywheelSpeeds(TalonFXConfiguration transferRollersEastConfiguration) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setFlywheelSpeeds'");
-  }
 }
