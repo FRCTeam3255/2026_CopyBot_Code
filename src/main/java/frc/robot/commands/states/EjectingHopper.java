@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstMotion;
 import frc.robot.constants.ConstRotors;
+import frc.robot.subsystems.StateMachine;
+import frc.robot.*;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class EjectingHopper extends Command
@@ -16,12 +18,15 @@ public class EjectingHopper extends Command
   /** Creates a new EjectingHopper. */
   public EjectingHopper() {
 
+    addRequirements(RobotContainer.stateMachineInstance);
+
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.EJECTING_HOPPER);
     RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.INTAKE_PIVOT_DEPLOY);
   }
 
