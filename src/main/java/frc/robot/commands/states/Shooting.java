@@ -30,14 +30,13 @@ public class Shooting extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.rotorsInstance.setFlywheelSpeeds(ConstRotors.FLYWHEEL_SHOOTING_SPEED);
-    if (RobotContainer.rotorsInstance.isFlyWheelAtSpeed(ConstRotors.FLYWHEEL_SHOOTING_SPEED)) {
+    if (RobotContainer.rotorsInstance.isFlyWheelAtSpeed(ConstRotors.FLYWHEEL_TOLERANCE)) {
       RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.INTAKE_TRANSFER_SPEED);
       RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
     }
 
     else {
-      RobotContainer.rotorsInstance.setFlywheelPercentOutput(0.0);
+      RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.STOP);
     }
 
   }
