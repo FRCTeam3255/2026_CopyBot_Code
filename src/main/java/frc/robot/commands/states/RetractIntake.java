@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstMotion;
 import frc.robot.constants.ConstRotors;
+import frc.robot.subsystems.StateMachine;
 
 public class RetractIntake extends Command {
   /** Creates a new RetractIntake. */
@@ -21,6 +22,7 @@ public class RetractIntake extends Command {
   public void initialize() {
     RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.INTAKE_PIVOT_RETRACT);
     RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.STOP);
+    RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.RETRACT_INTAKE);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
