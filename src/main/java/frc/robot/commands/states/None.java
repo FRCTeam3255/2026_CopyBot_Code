@@ -28,7 +28,7 @@ public class None extends Command {
     RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.STOP);
     RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.STOP);
     RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.STOP);
-    RobotContainer.motionInstance.setHoodPivotAngle(ConstMotion.NONE);
+    RobotContainer.motionInstance.setHoodPivotAngle(ConstMotion.HOOD_NONE_ANGLE);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
