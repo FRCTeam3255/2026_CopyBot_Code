@@ -57,10 +57,6 @@ public class StateMachine extends SubsystemBase {
     SHOOTING,
     EJECTING_HOPPER,
     REVERSING_SHOOTER,
-    PREP_CLIMB_L1,
-    CLIMBING_L1,
-    CLIMBING_L2_3,
-    UNCLIMB_L1,
     RETRACT_INTAKE,
   }
 
