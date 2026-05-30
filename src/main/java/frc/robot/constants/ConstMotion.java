@@ -24,7 +24,7 @@ public class ConstMotion {
   public static final Angle INTAKE_PIVOT_RETRACT = Degrees.of(0);
   public static final Angle HOOD_PIVOT_ANGLE = Degrees.of(14);
   public static final double STOP = 0;
-  public static final Angle NONE = Degrees.of(0);
+  public static final Angle HOOD_NONE_ANGLE = Degrees.of(0);
 
   static {
 
