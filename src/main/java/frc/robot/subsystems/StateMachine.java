@@ -8,7 +8,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.states.*;
+import frc.robot.commands.states.None;
 
 @Logged
 public class StateMachine extends SubsystemBase {
@@ -43,8 +43,25 @@ public class StateMachine extends SubsystemBase {
   }
 
   public enum RobotState {
-    NONE
-    // TODO: Add other robot states as needed
+    NONE,
+    INTAKING,
+    PREP_CORNER,
+    PREP_DEPOT,
+    PREP_HUB,
+    PREP_TRENCH,
+    PREP_ANYWHERE,
+    PREP_NON_OUTPOST,
+    PREP_TOWER,
+    PREP_NEUTRAL_TO_ALLIANCE,
+    PREP_OPPONENT_TO_ALLIANCE,
+    SHOOTING,
+    EJECTING_HOPPER,
+    REVERSING_SHOOTER,
+    PREP_CLIMB_L1,
+    CLIMBING_L1,
+    CLIMBING_L2_3,
+    UNCLIMB_L1,
+    RETRACT_INTAKE,
   }
 
   @Override
