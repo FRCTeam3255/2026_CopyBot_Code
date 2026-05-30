@@ -6,13 +6,10 @@ package frc.robot.constants;
 
 import static edu.wpi.first.units.Units.Percent;
 
-import java.util.TooManyListenersException;
-
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
-import edu.wpi.first.units.Unit;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.AngularVelocity;
 
@@ -32,7 +29,7 @@ public class ConstRotors {
   public static final AngularVelocity INTAKE_TRANSFER_SPEED = Units.RPM.of(3000);
   public static final double SERIALIZER_SHOOTING_SPEED = 0.5;
   public static final double STOP = 0;
-  public static final AngularVelocity TRANSFER_ROLLERS_SPEED = Units.RPM.of(3000);
+  public static final AngularVelocity TRANSFER_ROLLERS_SPEED = Units.RPM.of(3400);
   public static final AngularVelocity FLYWHEEL_TOLERANCE = Units.RPM.of(100);
   static {
 

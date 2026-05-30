@@ -34,11 +34,6 @@ public class Shooting extends Command {
       RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.INTAKE_TRANSFER_SPEED);
       RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
     }
-
-    else {
-      RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.STOP);
-    }
-
   }
 
   // Called once the command ends or is interrupted.
