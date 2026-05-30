@@ -28,6 +28,7 @@ public class ConstRotors {
   public static final AngularVelocity INTAKE_TRANSFER_SPEED = Units.RPM.of(3000);
   public static final double SERIALIZER_SHOOTING_SPEED = 0.5;
   public static final double STOP = 0;
+  public static final AngularVelocity TRANSFER_ROLLERS_SPEED = Units.RPM.of(3000);
   static {
 
     // SHOOTER_TRANSFER_EAST_CONFIGURATION.MotorOutput.NeutralMode =
