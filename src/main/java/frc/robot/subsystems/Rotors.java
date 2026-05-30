@@ -77,17 +77,22 @@ public class Rotors extends SubsystemBase {
     return transferRollersEast.getVelocity().getValue();
   }
 
-  public void setSerializerRollersSpeed(AngularVelocity speed) {
-    serializerRollers.setControl(serializerVelocityRequest.withVelocity(speed));
+  public void setSerializerRollersPercentOutput(Double speed) {
+    serializerRollers.set(speed);
   }
 
-  public void setIntakeRollersSpeeds(AngularVelocity speed) {
-    intakeRollersEast.setControl(intakeRollersVelocityRequest.withVelocity(speed));
+  public void setIntakeRollersPercentOutput(Double speed) {
+    intakeRollersEast.set(speed);
     intakeRollersWest.setControl(intakeRollerEastFollower);
   }
 
   public void setTransferRollersSpeeds(AngularVelocity speed) {
     transferRollersEast.setControl(transferRollersVelocityRequest.withVelocity(speed));
+    transferRollersWest.setControl(transferRollersEastFollower);
+  }
+
+  public void setTransferRollersPercentOutput(Double speed) {
+    transferRollersEast.set(speed);
     transferRollersWest.setControl(transferRollersEastFollower);
   }
 
@@ -97,6 +102,13 @@ public class Rotors extends SubsystemBase {
     flywheelBottomWest.setControl(flywheelWestFollower);
     flywheelBottomEast.setControl(flywheelEastFollower);
     lastDesiredFlyWheelSpeed = speed;
+  }
+
+  public void setFlywheelPercentOutput(Double speed) {
+    flywheelTopEast.set(speed);
+    flywheelTopWest.setControl(flywheelWestFollower);
+    flywheelBottomWest.setControl(flywheelWestFollower);
+    flywheelBottomEast.setControl(flywheelEastFollower);
   }
 
   public boolean isFlyWheelAtSpeed(AngularVelocity tolerance) {
