@@ -21,8 +21,10 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
+import frc.robot.commands.ResetPose;
 import frc.robot.commands.states.Intaking;
 import frc.robot.commands.states.RetractIntake;
+import frc.robot.commands.states.Shooting;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
@@ -63,7 +65,8 @@ public class RobotContainer {
   private final Vision loggedVisionInstance = visionInstance;
   public static final Telemetry telemetryInstance = new Telemetry();
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
-
+  public static final Shooting shooting = new Shooting();
+  public static final ResetPose resetPose = new ResetPose();
   Command TRY_NONE = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.NONE));
 
@@ -101,12 +104,16 @@ public class RobotContainer {
   private void configDriverBindings() {
     conDriver.btn_RightTrigger
         .whileTrue(intaking);
-    conDriver.btn_LeftTrigger
+    conDriver.btn_RightBumper
         .whileTrue(retracting);
     // Example Pose Drive
     conDriver.btn_X
         .whileTrue(EXAMPLE_POSE_DRIVE)
         .onFalse(Commands.runOnce(() -> driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
+    conDriver.btn_LeftTrigger
+        .whileTrue(shooting);
+    conDriver.btn_North
+        .onTrue(resetPose);
   }
 
   private void configOperatorBindings() {
@@ -126,6 +133,7 @@ public class RobotContainer {
     final Map<Command, String> autoStartingPoses = Map.ofEntries(
     // Example
     // Map.entry(autoCommand, "choreoStartingPath"),
+
     );
     // enter which we want to do based on name
     autoChooser.onChange(selectedAuto -> {
