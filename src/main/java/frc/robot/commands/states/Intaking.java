@@ -19,15 +19,15 @@ public class Intaking extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.DEPLOY_INTAKE_PIVOT_ANGLE);
+    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.INTAKE_ROLLERS_SPEED);
     RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.INTAKING);
-    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.INTAKE_PIVOT_DEPLOY);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.INTAKE_ROLLERS_SPEED);
-
   }
 
   // Called once the command ends or is interrupted.
