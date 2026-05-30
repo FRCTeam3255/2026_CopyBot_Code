@@ -20,12 +20,13 @@ public class ConstRotors {
   public static final TalonFXConfiguration TRANSFER_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
-  public static final AngularVelocity INTAKE_ROLLERS_SPEED = Units.RPM.of(3);
-  public static final AngularVelocity FLYWHEEL_SHOOTING_SPEED = Units.RPM.of(1000);
+  public static final AngularVelocity INTAKE_ROLLERS_SPEED = Units.RPM.of(1000);
+  public static final AngularVelocity FLYWHEEL_SHOOTING_SPEED = Units.RPM.of(3000);
   public static final AngularVelocity INTAKE_ROLLER_SPEED = Units.RPM.of(2000);
   public static final AngularVelocity INTAKE_TRANSFER_SPEED = Units.RPM.of(3000);
-  public static final AngularVelocity SERIALIZER_SHOOTING_SPEED = Units.RPM.of(4000);
+  public static final double SERIALIZER_SHOOTING_SPEED = 1;
   public static final AngularVelocity STOP_ALL = Units.RPM.of(0);
+  public static final double STOP = 0;
 
   static {
 
@@ -83,7 +84,4 @@ public class ConstRotors {
     TRANSFER_ROLLERS_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
   }
-
-  public static final AngularVelocity STOP = Units.RPM.of(0);
-
 }

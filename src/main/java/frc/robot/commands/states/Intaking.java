@@ -18,19 +18,18 @@ public class Intaking extends Command {
   @Override
   public void initialize() {
     RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.INTAKE_PIVOT_DEPLOY);
+    RobotContainer.rotorsInstance.setIntakeRollersSpeed(0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.rotorsInstance.setIntakeRollersSpeeds(ConstRotors.INTAKE_ROLLERS_SPEED);
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.rotorsInstance.setIntakeRollersSpeeds(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setIntakeRollersSpeeds(ConstRotors.STOP_ALL);
 
   }
 

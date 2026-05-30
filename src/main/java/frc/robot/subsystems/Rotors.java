@@ -23,8 +23,8 @@ public class Rotors extends SubsystemBase {
   final TalonFX serializerRollers = new TalonFX(rotorIDs.SERIALIZER_ROLLERS_CAN);
   final TalonFX intakeRollersWest = new TalonFX(rotorIDs.INTAKE_ROLLERS_WEST_CAN);
   final TalonFX intakeRollersEast = new TalonFX(rotorIDs.INTAKE_ROLLERS_EAST_CAN);
-  final TalonFX transferRollersWest = new TalonFX((rotorIDs.TRANSFER_ROLLERS_WEST_CAN));
-  final TalonFX transferRollersEast = new TalonFX((rotorIDs.TRANSFER_ROLLERS_EAST_CAN));
+  final TalonFX transferRollersWest = new TalonFX((rotorIDs.SHOOTER_TRANSFER_WEST_CAN));
+  final TalonFX transferRollersEast = new TalonFX((rotorIDs.SHOOTER_TRANSFER_EAST_CAN));
   final TalonFX flywheelTopWest = new TalonFX((rotorIDs.FLYWHEEL_TOP_WEST_CAN));
   final TalonFX flywheelTopEast = new TalonFX((rotorIDs.FLYWHEEL_TOP_EAST_CAN));
   final TalonFX flywheelBottomWest = new TalonFX((rotorIDs.FLYWHEEL_BOTTOM_WEST_CAN));
@@ -77,8 +77,8 @@ public class Rotors extends SubsystemBase {
     return transferRollersEast.getVelocity().getValue();
   }
 
-  public void setSerializerRollersSpeed(AngularVelocity speed) {
-    serializerRollers.setControl(serializerVelocityRequest.withVelocity(speed));
+  public void setSerializerRollersSpeed(Double speed) {
+    serializerRollers.set(speed);
   }
 
   public void setIntakeRollersSpeeds(AngularVelocity speed) {
@@ -109,6 +109,11 @@ public class Rotors extends SubsystemBase {
         && flyWheelSpeed.lte(upperLim);
     return flyWheelAtSpeed;
 
+  }
+
+  public void setIntakeRollersSpeed(double speed) {
+    intakeRollersWest.set(speed);
+    intakeRollersEast.setControl(intakeRollerEastFollower);
   }
 
   @Override

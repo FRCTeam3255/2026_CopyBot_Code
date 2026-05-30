@@ -42,7 +42,7 @@ public class Shooting extends Command {
   public void end(boolean interrupted) {
     RobotContainer.rotorsInstance.setFlywheelSpeeds(ConstRotors.STOP_ALL);
     RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.STOP_ALL);
-    RobotContainer.rotorsInstance.setSerializerRollersSpeed(ConstRotors.STOP_ALL);
+    RobotContainer.rotorsInstance.setSerializerRollersSpeed(ConstRotors.STOP);
 
   }
 

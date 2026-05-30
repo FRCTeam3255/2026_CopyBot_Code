@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -21,8 +22,10 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
+import frc.robot.commands.ResetPose;
 import frc.robot.commands.states.Intaking;
 import frc.robot.commands.states.RetractIntake;
+import frc.robot.commands.states.Shooting;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
@@ -57,12 +60,14 @@ public class RobotContainer {
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
-  public static final Intaking intakingInstance = new Intaking();
-  public static final RetractIntake RetractingInstance = new RetractIntake();
   public static final Vision visionInstance = new Vision();
   private final Vision loggedVisionInstance = visionInstance;
   public static final Telemetry telemetryInstance = new Telemetry();
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
+
+  public static final Intaking intakingInstance = new Intaking();
+  public static final RetractIntake RetractingInstance = new RetractIntake();
+  public static final Shooting shooting = new Shooting();
 
   Command TRY_NONE = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.NONE));
@@ -103,6 +108,9 @@ public class RobotContainer {
         .whileTrue(intakingInstance);
     conDriver.btn_LeftTrigger
         .whileTrue(RetractingInstance);
+    conDriver.btn_RightBumper
+        .whileTrue(shooting);
+    conDriver.btn_North.whileTrue(new ResetPose());
     // Example Pose Drive
     conDriver.btn_X
         .whileTrue(EXAMPLE_POSE_DRIVE)

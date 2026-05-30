@@ -56,17 +56,17 @@ public class ConstDrivetrain {
   public static final Time ROTATION_DELAY = Seconds.of(0.5);
 
   // TODO: Swoffsets
-  public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.178466796875);
-  public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.498779296875);
-  public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.459716796875);
-  public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.31201171875);
+  public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(0.229248046875);
+  public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(0.406005859375);
+  public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(0.476806640625);
+  public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.144775390625);
 
   public static class PRACTICE_BOT {
     // TODO: Swoffsets
-    public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.199462890625);
-    public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(0.474365234375);
-    public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.447265625);
-    public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.3193359375);
+    public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(0.229248046875);
+    public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(0.406005859375);
+    public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(0.476806640625);
+    public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.144775390625);
   }
 
   public static final double SLOW_MODE_MULTIPLIER = 0.5;

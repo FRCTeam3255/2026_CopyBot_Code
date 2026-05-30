@@ -19,7 +19,7 @@ import frc.robot.constants.ConstMotion;
 public class Motion extends SubsystemBase {
   /** Creates a new Motion. */
   final TalonFX intakePivot = new TalonFX(DeviceIDs.motionIDs.INTAKE_PIVOT_CAN);
-  final TalonFX hoodPivot = new TalonFX(DeviceIDs.motionIDs.HOOD_PIVOT_CAN);
+  final TalonFX hoodPivot = new TalonFX(DeviceIDs.motionIDs.HOOD_CAN);
 
   MotionMagicExpoVoltage hoodPivotMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage intakePivotMotionRequest = new MotionMagicExpoVoltage(0);

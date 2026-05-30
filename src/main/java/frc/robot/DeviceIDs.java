@@ -36,22 +36,22 @@ public class DeviceIDs {
     public static final int BACK_RIGHT_ABSOLUTE_ENCODER_CAN = 3;
   }
 
-  // Rotor and Motion IDs: 10~29
   public static class rotorIDs {
     public static final int SERIALIZER_ROLLERS_CAN = 10;
     public static final int INTAKE_ROLLERS_WEST_CAN = 11;
     public static final int INTAKE_ROLLERS_EAST_CAN = 18;
-    public static final int TRANSFER_ROLLERS_WEST_CAN = 13;
-    public static final int TRANSFER_ROLLERS_EAST_CAN = 12;
-    public static final int FLYWHEEL_TOP_WEST_CAN = 15;
+    public static final int SHOOTER_TRANSFER_EAST_CAN = 12;
+    public static final int SHOOTER_TRANSFER_WEST_CAN = 13;
+
     public static final int FLYWHEEL_TOP_EAST_CAN = 14;
-    public static final int FLYWHEEL_BOTTOM_WEST_CAN = 17;
+    public static final int FLYWHEEL_TOP_WEST_CAN = 15;
     public static final int FLYWHEEL_BOTTOM_EAST_CAN = 16;
+    public static final int FLYWHEEL_BOTTOM_WEST_CAN = 17;
   }
 
   // Motion Profile IDs: 30~49
   public static class motionIDs {
-    public static final int HOOD_PIVOT_CAN = 32;
     public static final int INTAKE_PIVOT_CAN = 30;
+    public static final int HOOD_CAN = 32;
   }
 }
