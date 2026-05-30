@@ -7,6 +7,7 @@ package frc.robot.commands.states;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstRotors;
+import frc.robot.subsystems.StateMachine;
 
 public class ReversingShooter extends Command {
   /** Creates a new ReversingShooter. */
@@ -20,7 +21,7 @@ public class ReversingShooter extends Command {
   public void initialize() {
     RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.REVERSE_SHOOTING_SPEED);
     RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.REVERSE_SHOOTING_SPEED);
-
+    RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.REVERSING_SHOOTER);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
