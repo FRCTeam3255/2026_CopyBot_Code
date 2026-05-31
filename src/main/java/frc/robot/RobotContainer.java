@@ -69,26 +69,44 @@ public class RobotContainer {
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
 
-  public static final Intaking intaking = new Intaking();
-  public static final EjectingHopper ejectingHopper = new EjectingHopper();
-  public static final RetractIntake retracting = new RetractIntake();
-  public static final Shooting shooting = new Shooting();
-  public static final ReversingShooter reversingShooter = new ReversingShooter();
-  public static final PrepHub prepHub = new PrepHub();
-  public static final PrepCorner prepCorner = new PrepCorner();
-  public static final PrepTrench prepTrench = new PrepTrench();
-  public static final PrepNeautralToAlliance prepNeautralToAlliance = new PrepNeautralToAlliance();
-  public static final PrepTower prepTower = new PrepTower();
-  public static final PrepAnywhere prepAnywhere = new PrepAnywhere();
-  public static final PrepOpponentToAlliance prepOpponentToAlliance = new PrepOpponentToAlliance();
-
   public static final Vision visionInstance = new Vision();
   private final Vision loggedVisionInstance = visionInstance;
   public static final Telemetry telemetryInstance = new Telemetry();
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
   public static final ResetPose resetPose = new ResetPose();
-  Command TRY_NONE = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.NONE));
+
+  Command TRY_INTAKING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.INTAKING));
+
+  Command TRY_SHOOTING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.SHOOTING));
+
+  Command TRY_EJECTING_HOPPER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.EJECTING_HOPPER));
+
+  Command TRY_REVERSING_SHOOTER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.REVERSING_SHOOTER));
+
+  Command TRY_PREPANYWHERE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_ANYWHERE));
+
+  Command TRY_PREPTRENCH = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_TRENCH));
+
+  Command TRY_PREPNEAUTRALTOALLIANCE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_NEUTRAL_TO_ALLIANCE));
+
+  Command TRY_PREPOPPONENTOALLIANCE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_OPPONENT_TO_ALLIANCE));
+
+  Command TRY_PREPTOWER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_TOWER));
+
+  Command TRY_PREPHUB = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_HUB));
+
+  Command TRY_PREPCORNER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_CORNER));
 
   Command MANUAL = new DeferredCommand(
       driverStateMachineInstance.tryState(
@@ -128,18 +146,22 @@ public class RobotContainer {
         .onTrue(retracting);
     conDriver.btn_South
         .whileTrue(ejectingHopper);
+    conDriver.btn_East
+        .whileTrue(reversingShooter);
+    conDriver.btn_West
+        .onTrue(prepNeautralToAlliance);
     conDriver.btn_RightTrigger
         .whileTrue(shooting);
     conDriver.btn_A
-        .whileTrue();
+        .onTrue(prepTrench);
     conDriver.btn_B
-        .whileTrue();
+        .onTrue(prepCorner);
     conDriver.btn_X
-        .whileTrue();
+        .onTrue(prepTower);
     conDriver.btn_Y
-        .whileTrue();
+        .onTrue(prepHub);
     conDriver.btn_RightBumper
-        .whileTrue();
+        .onTrue(prepAnywhere);
 
     // Example Pose Drive
     // conDriver.btn_X
