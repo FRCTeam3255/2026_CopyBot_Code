@@ -22,9 +22,6 @@ import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
-import frc.robot.commands.states.Intaking;
-import frc.robot.commands.states.RetractIntake;
-import frc.robot.commands.states.Shooting;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
@@ -59,16 +56,48 @@ public class RobotContainer {
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
-  public static final Intaking intaking = new Intaking();
-  public static final RetractIntake retracting = new RetractIntake();
+
   public static final Vision visionInstance = new Vision();
   private final Vision loggedVisionInstance = visionInstance;
   public static final Telemetry telemetryInstance = new Telemetry();
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
-  public static final Shooting shooting = new Shooting();
   public static final ResetPose resetPose = new ResetPose();
-  Command TRY_NONE = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.NONE));
+
+  Command TRY_INTAKING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.INTAKING));
+
+  Command TRY_SHOOTING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.SHOOTING));
+
+  Command TRY_EJECTING_HOPPER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.EJECTING_HOPPER));
+
+  Command TRY_REVERSING_SHOOTER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.REVERSING_SHOOTER));
+
+  Command TRY_PREPANYWHERE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_ANYWHERE));
+
+  Command TRY_PREPTRENCH = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_TRENCH));
+
+  Command TRY_PREPNEAUTRALTOALLIANCE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_NEUTRAL_TO_ALLIANCE));
+
+  Command TRY_PREPOPPONENTOALLIANCE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_OPPONENT_TO_ALLIANCE));
+
+  Command TRY_PREPTOWER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_TOWER));
+
+  Command TRY_PREPHUB = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_HUB));
+
+  Command TRY_PREPCORNER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_CORNER));
+
+  Command TRY_RETRACTING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREP_CORNER));
 
   Command MANUAL = new DeferredCommand(
       driverStateMachineInstance.tryState(
@@ -102,16 +131,36 @@ public class RobotContainer {
   }
 
   private void configDriverBindings() {
-    conDriver.btn_RightTrigger
-        .whileTrue(intaking);
-    conDriver.btn_RightBumper
-        .whileTrue(retracting);
-    // Example Pose Drive
-    conDriver.btn_X
-        .whileTrue(EXAMPLE_POSE_DRIVE)
-        .onFalse(Commands.runOnce(() -> driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
     conDriver.btn_LeftTrigger
-        .whileTrue(shooting);
+        .whileTrue(TRY_INTAKING);
+    conDriver.btn_RightStick
+        .onTrue(TRY_RETRACTING);
+    conDriver.btn_South
+        .whileTrue(TRY_EJECTING_HOPPER);
+    conDriver.btn_East
+        .whileTrue(TRY_REVERSING_SHOOTER);
+    conDriver.btn_West
+        .onTrue(TRY_PREPNEAUTRALTOALLIANCE);
+    conDriver.btn_LeftStick
+        .onTrue(TRY_PREPOPPONENTOALLIANCE);
+    conDriver.btn_RightTrigger
+        .whileTrue(TRY_SHOOTING);
+    conDriver.btn_A
+        .onTrue(TRY_PREPTRENCH);
+    conDriver.btn_B
+        .onTrue(TRY_PREPCORNER);
+    conDriver.btn_X
+        .onTrue(TRY_PREPTOWER);
+    conDriver.btn_Y
+        .onTrue(TRY_PREPHUB);
+    conDriver.btn_RightBumper
+        .onTrue(TRY_PREPANYWHERE);
+
+    // Example Pose Drive
+    // conDriver.btn_X
+    // .whileTrue(EXAMPLE_POSE_DRIVE)
+    // .onFalse(Commands.runOnce(() ->
+    // driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
     conDriver.btn_North
         .onTrue(resetPose);
   }
