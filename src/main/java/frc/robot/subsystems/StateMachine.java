@@ -22,6 +22,7 @@ public class StateMachine extends SubsystemBase {
 
   public void setRobotState(RobotState robotState) {
     currentRobotState = robotState;
+
   }
 
   public RobotState getRobotState() {
@@ -34,6 +35,8 @@ public class StateMachine extends SubsystemBase {
         switch (currentRobotState) {
           case NONE:
           case INTAKING:
+          case REVERSING_SHOOTER:
+          case EJECTING_HOPPER:
             return new None();
         }
         break;
@@ -43,6 +46,75 @@ public class StateMachine extends SubsystemBase {
             return new None();
         }
         break;
+      case SHOOTING:
+        switch (currentRobotState) {
+          case NONE:
+            return new None();
+        }
+        break;
+      case REVERSING_SHOOTER:
+        switch (currentRobotState) {
+          case NONE:
+            return new None();
+        }
+        break;
+      case PREP_ANYWHERE:
+        switch (currentRobotState) {
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case SHOOTING:
+            return new None();
+        }
+        break;
+      case PREP_HUB:
+        switch (currentRobotState) {
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case SHOOTING:
+            return new None();
+        }
+        break;
+      case PREP_CORNER:
+        switch (currentRobotState) {
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case SHOOTING:
+            return new None();
+        }
+        break;
+      case PREP_NEUTRAL_TO_ALLIANCE:
+        switch (currentRobotState) {
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case SHOOTING:
+            return new None();
+        }
+        break;
+      case PREP_OPPONENT_TO_ALLIANCE:
+        switch (currentRobotState) {
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case SHOOTING:
+            return new None();
+        }
+        break;
+      case PREP_TOWER:
+        switch (currentRobotState) {
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case SHOOTING:
+            return new None();
+        }
+        break;
+      case PREP_TRENCH:
+        switch (currentRobotState) {
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case SHOOTING:
+            return new None();
+        }
+        break;
+
     }
     return Commands
         .print("ITS SO OVER D: Invalid State Provided, Blame Eli. Attempted to go to: " + desiredState.toString()
