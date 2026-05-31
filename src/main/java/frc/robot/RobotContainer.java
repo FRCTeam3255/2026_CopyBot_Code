@@ -22,8 +22,17 @@ import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
+import frc.robot.commands.states.EjectingHopper;
 import frc.robot.commands.states.Intaking;
+import frc.robot.commands.states.PrepAnywhere;
+import frc.robot.commands.states.PrepCorner;
+import frc.robot.commands.states.PrepHub;
+import frc.robot.commands.states.PrepNeautralToAlliance;
+import frc.robot.commands.states.PrepOpponentToAlliance;
+import frc.robot.commands.states.PrepTower;
+import frc.robot.commands.states.PrepTrench;
 import frc.robot.commands.states.RetractIntake;
+import frc.robot.commands.states.ReversingShooter;
 import frc.robot.commands.states.Shooting;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
@@ -59,13 +68,24 @@ public class RobotContainer {
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
+
   public static final Intaking intaking = new Intaking();
+  public static final EjectingHopper ejectingHopper = new EjectingHopper();
   public static final RetractIntake retracting = new RetractIntake();
+  public static final Shooting shooting = new Shooting();
+  public static final ReversingShooter reversingShooter = new ReversingShooter();
+  public static final PrepHub prepHub = new PrepHub();
+  public static final PrepCorner prepCorner = new PrepCorner();
+  public static final PrepTrench prepTrench = new PrepTrench();
+  public static final PrepNeautralToAlliance prepNeautralToAlliance = new PrepNeautralToAlliance();
+  public static final PrepTower prepTower = new PrepTower();
+  public static final PrepAnywhere prepAnywhere = new PrepAnywhere();
+  public static final PrepOpponentToAlliance prepOpponentToAlliance = new PrepOpponentToAlliance();
+
   public static final Vision visionInstance = new Vision();
   private final Vision loggedVisionInstance = visionInstance;
   public static final Telemetry telemetryInstance = new Telemetry();
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
-  public static final Shooting shooting = new Shooting();
   public static final ResetPose resetPose = new ResetPose();
   Command TRY_NONE = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.NONE));
@@ -102,16 +122,30 @@ public class RobotContainer {
   }
 
   private void configDriverBindings() {
-    conDriver.btn_RightTrigger
+    conDriver.btn_LeftTrigger
         .whileTrue(intaking);
     conDriver.btn_RightBumper
-        .whileTrue(retracting);
-    // Example Pose Drive
-    conDriver.btn_X
-        .whileTrue(EXAMPLE_POSE_DRIVE)
-        .onFalse(Commands.runOnce(() -> driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
-    conDriver.btn_LeftTrigger
+        .onTrue(retracting);
+    conDriver.btn_South
+        .whileTrue(ejectingHopper);
+    conDriver.btn_RightTrigger
         .whileTrue(shooting);
+    conDriver.btn_A
+        .whileTrue();
+    conDriver.btn_B
+        .whileTrue();
+    conDriver.btn_X
+        .whileTrue();
+    conDriver.btn_Y
+        .whileTrue();
+    conDriver.btn_RightBumper
+        .whileTrue();
+
+    // Example Pose Drive
+    // conDriver.btn_X
+    // .whileTrue(EXAMPLE_POSE_DRIVE)
+    // .onFalse(Commands.runOnce(() ->
+    // driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
     conDriver.btn_North
         .onTrue(resetPose);
   }
