@@ -19,8 +19,17 @@ public class ConstRotors {
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration TRANSFER_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration TRANSFER_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
+
   public static final TalonFXConfiguration FLYWHEEL_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
+  public static final AngularVelocity FLYWHEEL_CORNER_SPEED = Units.RPM.of(4250);
+  public static final AngularVelocity FLYWHEEL_HUB_SPEED = Units.RPM.of(4000);
+  public static final AngularVelocity FLYWHEEL_TRENCH_SPEED = Units.RPM.of(4000);
+  public static final AngularVelocity FLYWHEEL_TOWER_SPEED = Units.RPM.of(4000);
+  public static final AngularVelocity FLYWHEEL_ANYWHERE_SPEED = Units.RPM.of(4100);
+  public static final AngularVelocity FLYWHEEL_NEUTRAL_TO_ALLIANCE_SPEED = Units.RPM.of(3700);
+  public static final AngularVelocity FLYWHEEL_OPPONENT_TO_ALLIANCE_SPEED = Units.RPM.of(6400);
+
   public static final double INTAKE_ROLLERS_SPEED = 0.5;
   public static final AngularVelocity FLYWHEEL_SHOOTING_SPEED = Units.RPM.of(1000);
   // public static final AngularVelocity INTAKE_ROLLER_SPEED = Units.RPM.of(2000);

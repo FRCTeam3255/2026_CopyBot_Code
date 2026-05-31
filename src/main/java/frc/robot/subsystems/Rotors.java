@@ -96,7 +96,7 @@ public class Rotors extends SubsystemBase {
     transferRollersWest.setControl(transferRollersEastFollower);
   }
 
-  public void setFlywheelSpeeds(AngularVelocity speed) {
+  public void setFlyWheelSpeeds(AngularVelocity speed) {
     flywheelTopEast.setControl(flyWheelVelocityRequest.withVelocity(speed));
     flywheelTopWest.setControl(flywheelWestFollower);
     flywheelBottomWest.setControl(flywheelWestFollower);
