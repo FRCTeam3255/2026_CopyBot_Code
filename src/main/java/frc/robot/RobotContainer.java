@@ -145,7 +145,7 @@ public class RobotContainer {
   private void configDriverBindings() {
     conDriver.btn_LeftTrigger
         .whileTrue(TRY_INTAKING);
-    conDriver.btn_RightBumper
+    conDriver.btn_RightStick
         .onTrue(TRY_RETRACTING);
     conDriver.btn_South
         .whileTrue(TRY_EJECTING_HOPPER);
@@ -153,6 +153,8 @@ public class RobotContainer {
         .whileTrue(TRY_REVERSING_SHOOTER);
     conDriver.btn_West
         .onTrue(TRY_PREPNEAUTRALTOALLIANCE);
+    conDriver.btn_LeftStick
+        .onTrue(TRY_PREPOPPONENTOALLIANCE);
     conDriver.btn_RightTrigger
         .whileTrue(TRY_SHOOTING);
     conDriver.btn_A
