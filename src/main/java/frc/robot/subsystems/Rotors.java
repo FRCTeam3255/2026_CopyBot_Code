@@ -96,7 +96,7 @@ public class Rotors extends SubsystemBase {
     transferRollersWest.setControl(transferRollersEastFollower);
   }
 
-  public void setFlywheelSpeeds(AngularVelocity speed) {
+  public void setFlyWheelSpeeds(AngularVelocity speed) {
     flywheelTopEast.setControl(flyWheelVelocityRequest.withVelocity(speed));
     flywheelTopWest.setControl(flywheelWestFollower);
     flywheelBottomWest.setControl(flywheelWestFollower);
@@ -127,4 +127,5 @@ public class Rotors extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
 }

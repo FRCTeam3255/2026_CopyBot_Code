@@ -9,7 +9,6 @@ import frc.robot.RobotContainer;
 import frc.robot.constants.ConstMotion;
 import frc.robot.constants.ConstRotors;
 import frc.robot.subsystems.StateMachine;
-import frc.robot.*;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class EjectingHopper extends Command
@@ -27,7 +26,7 @@ public class EjectingHopper extends Command
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.EJECTING_HOPPER);
-    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.INTAKE_PIVOT_DEPLOY);
+    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.DEPLOY_INTAKE_PIVOT_ANGLE);
     RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.REVERSE_SERIALIZER_ROLLERS_SPEED);
     RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.REVERSE_TRANSFER_ROLLERS_SPEED);
     RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.REVERSE_INTAKE_ROLLERS_SPEED);

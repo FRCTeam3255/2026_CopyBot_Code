@@ -20,10 +20,19 @@ import edu.wpi.first.units.measure.Angle;
 public class ConstMotion {
   public static final TalonFXConfiguration INTAKE_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
-  public static final Angle INTAKE_PIVOT_DEPLOY = Degrees.of(125);
-  public static final Angle INTAKE_PIVOT_RETRACT = Degrees.of(0);
+  public static final Angle DEPLOY_INTAKE_PIVOT_ANGLE = Degrees.of(125);
+  public static final Angle RETRACT_INTAKE_PIVOT_ANGLE = Degrees.of(0);
   public static final Angle HOOD_PIVOT_ANGLE = Degrees.of(14);
+  public static final Angle HOOD_PIVOT_ANGLE_RETRACT = Degrees.of(0);
   public static final double STOP = 0;
+  public static final Angle HOOD_NONE_ANGLE = Degrees.of(0);
+  public static final Angle HOOD_TRENCH_ANGLE = Units.Degrees.of(13);
+  public static final Angle HOOD_CORNER_ANGLE = Units.Degrees.of(23.5);
+  public static final Angle HOOD_TOWER_ANGLE = Units.Degrees.of(14);
+  public static final Angle HOOD_HUB_ANGLE = Units.Degrees.of(9.5);
+  public static final Angle HOOD_ANYWHERE_ANGLE = Units.Degrees.of(45);
+  public static final Angle HOOD_NEUTRAL_TO_ALLIANCE_ANGLE = Units.Degrees.of(45);
+  public static final Angle HOOD_OPPENENT_TO_ALLIANCE_ANGLE = Units.Degrees.of(37);
 
   static {
 
@@ -31,8 +40,8 @@ public class ConstMotion {
     INTAKE_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     INTAKE_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
     INTAKE_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
-    INTAKE_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = INTAKE_PIVOT_DEPLOY.in(Rotations);
-    INTAKE_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = INTAKE_PIVOT_RETRACT.in(Rotations);
+    INTAKE_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = DEPLOY_INTAKE_PIVOT_ANGLE.in(Rotations);
+    INTAKE_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = RETRACT_INTAKE_PIVOT_ANGLE.in(Rotations);
     INTAKE_PIVOT_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
     INTAKE_PIVOT_CONFIGURATION.Slot0.kS = 0.3;
     INTAKE_PIVOT_CONFIGURATION.Slot0.kP = 40;
