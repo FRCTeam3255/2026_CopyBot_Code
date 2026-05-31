@@ -20,8 +20,8 @@ public class RetractIntake extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.INTAKE_PIVOT_RETRACT);
     RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.STOP);
+    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.RETRACT_INTAKE_PIVOT_ANGLE);
     RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.RETRACT_INTAKE);
   }
 
