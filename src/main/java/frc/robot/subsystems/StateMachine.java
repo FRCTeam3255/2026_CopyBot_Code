@@ -11,16 +11,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.states.EjectingHopper;
 import frc.robot.commands.states.Intaking;
 import frc.robot.commands.states.None;
-import frc.robot.commands.states.PrepAnywhere;
-import frc.robot.commands.states.PrepCorner;
-import frc.robot.commands.states.PrepHub;
-import frc.robot.commands.states.PrepNeautralToAlliance;
-import frc.robot.commands.states.PrepOpponentToAlliance;
-import frc.robot.commands.states.PrepTower;
-import frc.robot.commands.states.PrepTrench;
 import frc.robot.commands.states.RetractIntake;
 import frc.robot.commands.states.ReversingShooter;
-import frc.robot.commands.states.Shooting;
+import frc.robot.commands.states.*;
+import frc.robot.commands.states.preps.*;
 
 @Logged
 public class StateMachine extends SubsystemBase {
@@ -171,7 +165,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
           case INTAKING:
-            return new PrepNeautralToAlliance();
+            return new PrepNeutralToAlliance();
         }
         break;
       case PREP_OPPONENT_TO_ALLIANCE:
