@@ -33,6 +33,13 @@ public class StateMachine extends SubsystemBase {
       case NONE:
         switch (currentRobotState) {
           case NONE:
+          case INTAKING:
+            return new None();
+        }
+        break;
+      case INTAKING:
+        switch (currentRobotState) {
+          case NONE:
             return new None();
         }
         break;
