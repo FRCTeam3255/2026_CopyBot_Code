@@ -37,6 +37,10 @@ public class ConstRotors {
   public static final double SERIALIZER_SHOOTING_SPEED = 0.5;
   public static final double STOP = 0;
   public static final double REVERSE_SHOOTING_SPEED = -1;
+  public static final double REVERSE_SERIALIZER_ROLLERS_SPEED = -0.5;
+  public static final double REVERSE_INTAKE_ROLLERS_SPEED = -0.5;
+  public static final double REVERSE_TRANSFER_ROLLERS_SPEED = -0.5;
+
   static {
 
     // SHOOTER_TRANSFER_EAST_CONFIGURATION.MotorOutput.NeutralMode =
