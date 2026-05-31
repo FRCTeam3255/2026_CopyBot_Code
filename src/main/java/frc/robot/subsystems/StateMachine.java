@@ -18,6 +18,7 @@ import frc.robot.commands.states.PrepNeautralToAlliance;
 import frc.robot.commands.states.PrepOpponentToAlliance;
 import frc.robot.commands.states.PrepTower;
 import frc.robot.commands.states.PrepTrench;
+import frc.robot.commands.states.RetractIntake;
 import frc.robot.commands.states.ReversingShooter;
 import frc.robot.commands.states.Shooting;
 
@@ -78,6 +79,22 @@ public class StateMachine extends SubsystemBase {
           case PREP_TRENCH:
             return new Shooting();
         }
+      case RETRACT_INTAKE:
+        switch (currentRobotState) {
+          case NONE:
+          case SHOOTING:
+          case EJECTING_HOPPER:
+          case REVERSING_SHOOTER:
+          case INTAKING:
+          case PREP_ANYWHERE:
+          case PREP_CORNER:
+          case PREP_HUB:
+          case PREP_NEUTRAL_TO_ALLIANCE:
+          case PREP_OPPONENT_TO_ALLIANCE:
+          case PREP_TRENCH:
+
+            return new RetractIntake();
+        }
         break;
       case REVERSING_SHOOTER:
         switch (currentRobotState) {
@@ -105,6 +122,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TOWER:
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
+          case INTAKING:
             return new PrepAnywhere();
         }
         break;
@@ -120,6 +138,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TOWER:
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
+          case INTAKING:
             return new PrepHub();
         }
         break;
@@ -135,6 +154,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TOWER:
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
+          case INTAKING:
             return new PrepCorner();
         }
         break;
@@ -150,6 +170,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TOWER:
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
+          case INTAKING:
             return new PrepNeautralToAlliance();
         }
         break;
@@ -165,6 +186,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TOWER:
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
+          case INTAKING:
             return new PrepOpponentToAlliance();
         }
         break;
@@ -180,6 +202,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TOWER:
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
+          case INTAKING:
             return new PrepTower();
         }
         break;
@@ -195,6 +218,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_TOWER:
           case PREP_TRENCH:
           case REVERSING_SHOOTER:
+          case INTAKING:
             return new PrepTrench();
         }
         break;
@@ -209,6 +233,7 @@ public class StateMachine extends SubsystemBase {
           case PREP_OPPONENT_TO_ALLIANCE:
           case PREP_TOWER:
           case PREP_TRENCH:
+          case INTAKING:
             return new EjectingHopper();
         }
 
