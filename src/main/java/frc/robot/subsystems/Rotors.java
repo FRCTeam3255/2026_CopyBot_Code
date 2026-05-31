@@ -104,7 +104,7 @@ public class Rotors extends SubsystemBase {
     lastDesiredFlyWheelSpeed = speed;
   }
 
-  public void setFlywheelPercentOutput(Double speed) {
+  public void setFlywheelPercentOutput(double speed) {
     flywheelTopEast.set(speed);
     flywheelTopWest.setControl(flywheelWestFollower);
     flywheelBottomWest.setControl(flywheelWestFollower);
