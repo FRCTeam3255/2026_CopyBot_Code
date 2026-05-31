@@ -33,7 +33,7 @@ public class Rotors extends SubsystemBase {
   AngularVelocity lastDesiredTransferRollersSpeed = Units.RPM.of(0);
   Follower flywheelEastFollower = new Follower(flywheelTopEast.getDeviceID(), MotorAlignmentValue.Aligned);
   Follower flywheelWestFollower = new Follower(flywheelTopEast.getDeviceID(), MotorAlignmentValue.Opposed);
-  Follower transferRollersEastFollower = new Follower(intakeRollersEast.getDeviceID(), MotorAlignmentValue.Opposed);
+  Follower transferRollersEastFollower = new Follower(transferRollersWest.getDeviceID(), MotorAlignmentValue.Opposed);
   Follower intakeRollerEastFollower = new Follower(intakeRollersEast.getDeviceID(), MotorAlignmentValue.Opposed);
   final MotionMagicVelocityVoltage flyWheelVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage transferRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
