@@ -26,7 +26,7 @@ public class Shooting extends Command {
   @Override
   public void execute() {
 
-    RobotContainer.rotorsInstance.setFlywheelSpeeds(ConstRotors.FLYWHEEL_SHOOTING_SPEED);
+    RobotContainer.rotorsInstance.setFlyWheelSpeeds(ConstRotors.FLYWHEEL_SHOOTING_SPEED);
     if (RobotContainer.rotorsInstance.isFlyWheelAtSpeed(ConstRotors.FLYWHEEL_SHOOTING_SPEED)) {
       RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.INTAKE_TRANSFER_SPEED);
       RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
