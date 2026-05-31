@@ -33,9 +33,10 @@ public class ConstRotors {
   public static final double INTAKE_ROLLERS_SPEED = 0.5;
   public static final AngularVelocity FLYWHEEL_SHOOTING_SPEED = Units.RPM.of(1000);
   // public static final AngularVelocity INTAKE_ROLLER_SPEED = Units.RPM.of(2000);
-  public static final AngularVelocity INTAKE_TRANSFER_SPEED = Units.RPM.of(3000);
   public static final double SERIALIZER_SHOOTING_SPEED = 0.5;
   public static final double STOP = 0;
+  public static final AngularVelocity TRANSFER_ROLLERS_SPEED = Units.RPM.of(3400);
+  public static final AngularVelocity FLYWHEEL_TOLERANCE = Units.RPM.of(100);
   public static final double REVERSE_SHOOTING_SPEED = -1;
   public static final double REVERSE_SERIALIZER_ROLLERS_SPEED = -0.5;
   public static final double REVERSE_INTAKE_ROLLERS_SPEED = -0.5;
