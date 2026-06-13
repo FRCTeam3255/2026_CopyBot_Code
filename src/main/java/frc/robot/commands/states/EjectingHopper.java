@@ -28,8 +28,8 @@ public class EjectingHopper extends Command
     RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.EJECTING_HOPPER);
     RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.DEPLOY_INTAKE_PIVOT_ANGLE);
     RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.EJECTING_SERIALIZER_ROLLERS_SPEED);
-    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.REVERSE_TRANSFER_ROLLERS_SPEED);
-    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.EJECTING_INTAKE_ROLLERS_SPEED);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.REVERSE_TRANSFER_ROLLERS_EAST_SPEED);
+    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.EJECTING_INTAKE_ROLLERS_EAST_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
