@@ -27,8 +27,8 @@ public class EjectingHopper extends Command
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.EJECTING_HOPPER);
     RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.DEPLOY_INTAKE_PIVOT_ANGLE);
-    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.EJECTING_SERIALIZER_ROLLERS_SPEED);
-    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.REVERSE_TRANSFER_ROLLERS_EAST_SPEED);
+    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.EJECTING_INTAKE_ROLLERS_EAST_SPEED);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.EJECTING_SERIALIZER_ROLLERS_SPEED);
     RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.REVERSE_TRANSFER_ROLLERS_EAST_SPEED);
   }
 
