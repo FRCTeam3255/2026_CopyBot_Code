@@ -17,7 +17,6 @@ public class Shooting extends Command {
   /** Creates a new Shooting. */
 
   private final Timer intakeAgitationTimer = new Timer();
-  // private RobotState previousState;RobotBase
 
   public Shooting() {
 
