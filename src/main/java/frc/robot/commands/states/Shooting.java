@@ -27,7 +27,7 @@ public class Shooting extends Command {
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState((StateMachine.RobotState.SHOOTING));
     RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.TRANSFER_ROLLERS_SPEED);
-    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_ROLLERS_SPEED);
     intakeAgitationTimer.restart();
 
   }

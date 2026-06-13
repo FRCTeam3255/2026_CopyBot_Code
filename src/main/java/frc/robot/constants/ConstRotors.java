@@ -22,30 +22,26 @@ public class ConstRotors {
 
   public static final TalonFXConfiguration FLYWHEEL_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
-  public static final AngularVelocity FLYWHEEL_CORNER_SPEED = Units.RPM.of(4250);
-  public static final AngularVelocity FLYWHEEL_HUB_SPEED = Units.RPM.of(4000);
-  public static final AngularVelocity FLYWHEEL_TRENCH_SPEED = Units.RPM.of(4000);
-  public static final AngularVelocity FLYWHEEL_TOWER_SPEED = Units.RPM.of(4000);
-  public static final AngularVelocity FLYWHEEL_ANYWHERE_SPEED = Units.RPM.of(4100);
-  public static final AngularVelocity FLYWHEEL_NEUTRAL_TO_ALLIANCE_SPEED = Units.RPM.of(3700);
-  public static final AngularVelocity FLYWHEEL_OPPONENT_TO_ALLIANCE_SPEED = Units.RPM.of(6400);
+  public static final AngularVelocity FLYWHEEL_PREP_CORNER_SPEED = Units.RPM.of(4250);
+  public static final AngularVelocity FLYWHEEL_PREP_HUB_SPEED = Units.RPM.of(4000);
+  public static final AngularVelocity FLYWHEEL_PREP_TRENCH_SPEED = Units.RPM.of(4000);
+  public static final AngularVelocity FLYWHEEL_PREP_TOWER_SPEED = Units.RPM.of(4000);
+  public static final AngularVelocity FLYWHEEL_PREP_ANYWHERE_SPEED = Units.RPM.of(4100);
+  public static final AngularVelocity FLYWHEEL_PREP_NEUTRAL_TO_ALLIANCE_SPEED = Units.RPM.of(3700);
+  public static final AngularVelocity FLYWHEEL_PREP_OPPONENT_TO_ALLIANCE_SPEED = Units.RPM.of(6400);
 
   public static final double INTAKE_ROLLERS_SPEED = 1;
   public static final AngularVelocity FLYWHEEL_SHOOTING_SPEED = Units.RPM.of(1000);
-  // public static final AngularVelocity INTAKE_ROLLER_SPEED = Units.RPM.of(2000);
-  public static final double SERIALIZER_SHOOTING_SPEED = 1;
+  public static final double SERIALIZER_ROLLERS_SPEED = 1;
   public static final double STOP = 0;
   public static final AngularVelocity TRANSFER_ROLLERS_SPEED = Units.RPM.of(3400);
   public static final AngularVelocity FLYWHEEL_TOLERANCE = Units.RPM.of(100);
-  public static final double REVERSE_SHOOTING_SPEED = -1;
-  public static final double REVERSE_SERIALIZER_ROLLERS_SPEED = -1;
-  public static final double REVERSE_INTAKE_ROLLERS_SPEED = -1;
-  public static final double REVERSE_TRANSFER_ROLLERS_SPEED = -1;
+  public static final double REVERSE_FLYWHEEL_SPEED = -1;
+  public static final double EJECTING_SERIALIZER_ROLLERS_SPEED = -1;
+  public static final double EJECTING_INTAKE_ROLLERS_EAST_SPEED = -1;
+  public static final double REVERSE_TRANSFER_ROLLERS_EAST_SPEED = -1;
 
   static {
-
-    // SHOOTER_TRANSFER_EAST_CONFIGURATION.MotorOutput.NeutralMode =
-    // NeutralModeValue.Coast;/
 
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;

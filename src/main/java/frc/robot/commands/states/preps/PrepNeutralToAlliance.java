@@ -14,7 +14,7 @@ public class PrepNeutralToAlliance extends BasePrep {
   /** Creates a new PrepNeautralToAlliance. */
   public PrepNeutralToAlliance() {
 
-    super(ConstRotors.FLYWHEEL_NEUTRAL_TO_ALLIANCE_SPEED, ConstMotion.HOOD_NEUTRAL_TO_ALLIANCE_ANGLE,
+    super(ConstRotors.FLYWHEEL_PREP_NEUTRAL_TO_ALLIANCE_SPEED, ConstMotion.HOOD_PREP_NEUTRAL_TO_ALLIANCE_ANGLE,
         RobotState.PREP_NEUTRAL_TO_ALLIANCE);
 
     // Use addRequirements() here to declare subsystem dependencies.

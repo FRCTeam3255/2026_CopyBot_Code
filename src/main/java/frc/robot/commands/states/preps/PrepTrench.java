@@ -12,7 +12,7 @@ public class PrepTrench extends BasePrep {
   /** Creates a new PrepTrench. */
   public PrepTrench() {
 
-    super(ConstRotors.FLYWHEEL_TRENCH_SPEED, ConstMotion.HOOD_TRENCH_ANGLE, RobotState.PREP_TRENCH);
+    super(ConstRotors.FLYWHEEL_PREP_TRENCH_SPEED, ConstMotion.HOOD_PREP_TRENCH_ANGLE, RobotState.PREP_TRENCH);
 
     // Use addRequirements() here to declare subsystem dependencies.
   }

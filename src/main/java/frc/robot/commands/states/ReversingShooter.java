@@ -19,8 +19,8 @@ public class ReversingShooter extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.REVERSE_SHOOTING_SPEED);
-    RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.REVERSE_SHOOTING_SPEED);
+    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.REVERSE_TRANSFER_ROLLERS_EAST_SPEED);
+    RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.REVERSE_FLYWHEEL_SPEED);
     RobotContainer.stateMachineInstance.setRobotState(StateMachine.RobotState.REVERSING_SHOOTER);
   }
 

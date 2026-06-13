@@ -12,7 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class PrepCorner extends BasePrep {
   /** Creates a new PrepNonOutpost. */
   public PrepCorner() {
-    super(ConstRotors.FLYWHEEL_CORNER_SPEED, ConstMotion.HOOD_CORNER_ANGLE, RobotState.PREP_CORNER);
+    super(ConstRotors.FLYWHEEL_PREP_CORNER_SPEED, ConstMotion.HOOD_PREP_CORNER_ANGLE, RobotState.PREP_CORNER);
 
     // Use addRequirements() here to declare subsystem dependencies.
   }
