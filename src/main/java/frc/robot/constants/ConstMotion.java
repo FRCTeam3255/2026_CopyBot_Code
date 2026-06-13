@@ -32,7 +32,7 @@ public class ConstMotion {
   public static final Angle HOOD_PREP_HUB_ANGLE = Units.Degrees.of(9.5);
   public static final Angle HOOD_PREP_ANYWHERE_ANGLE = Units.Degrees.of(45);
   public static final Angle HOOD_PREP_NEUTRAL_TO_ALLIANCE_ANGLE = Units.Degrees.of(45);
-  public static final Angle HOOD_PREP_OPPENENT_TO_ALLIANCE_ANGLE = Units.Degrees.of(37);
+  public static final Angle HOOD_PREP_OPPONENT_TO_ALLIANCE_ANGLE = Units.Degrees.of(37);
 
   static {
 
