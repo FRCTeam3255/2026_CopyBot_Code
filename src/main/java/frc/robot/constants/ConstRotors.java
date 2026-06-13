@@ -43,9 +43,6 @@ public class ConstRotors {
 
   static {
 
-    // SHOOTER_TRANSFER_EAST_CONFIGURATION.MotorOutput.NeutralMode =
-    // NeutralModeValue.Coast;/
-
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     FLYWHEEL_WEST_CONFIGURATION.Slot0.kS = 0.14;
