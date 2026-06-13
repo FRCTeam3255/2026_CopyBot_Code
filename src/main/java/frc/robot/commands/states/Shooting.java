@@ -35,9 +35,9 @@ public class Shooting extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.rotorsInstance.setFlywheelPercentOutput(0.0);
-    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(0.0);
-    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(0.0);
+    RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.STOP);
     RobotContainer.motionInstance.setHoodPivotAngle(ConstMotion.HOOD_PIVOT_ANGLE_RETRACT);
 
   }
