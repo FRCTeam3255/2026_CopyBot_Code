@@ -29,7 +29,6 @@ public class Motion extends SubsystemBase {
   Angle lastDesiredIntakePivotAngle = Degrees.zero();
 
   private boolean hoodAtPostion = false;
-  private boolean intakePivotAtPosition = false;
 
   public Motion() {
     intakePivot.getConfigurator().apply(ConstMotion.INTAKE_PIVOT_CONFIGURATION);
@@ -78,28 +77,6 @@ public class Motion extends SubsystemBase {
     hoodAtPostion = hoodPivotAngle.gte(lowerlim)
         && hoodPivotAngle.lte(upperlim);
     return hoodAtPostion;
-  }
-
-  public boolean getIntakePivotAtAngle(Angle tolerance) {
-    Angle lowerlim = lastDesiredIntakePivotAngle.minus(tolerance);
-    Angle upperlim = lastDesiredIntakePivotAngle.plus(tolerance);
-
-    Angle intakePivotAngle = getIntakePivotAngle();
-
-    intakePivotAtPosition = intakePivotAngle.gte(lowerlim)
-        && intakePivotAngle.lte(upperlim);
-    return intakePivotAtPosition;
-  }
-
-  public boolean isIntakePivotAtAngle(Angle tol, Angle target) {
-    Angle lowerlim = target.minus(tol);
-    Angle upperlim = target.plus(tol);
-
-    Angle intakePivotAngle = getIntakePivotAngle();
-
-    intakePivotAtPosition = intakePivotAngle.gte(lowerlim)
-        && intakePivotAngle.lte(upperlim);
-    return intakePivotAtPosition;
   }
 
   @Override

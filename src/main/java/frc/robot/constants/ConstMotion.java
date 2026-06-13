@@ -15,11 +15,12 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Time;
 
 /** Add your docs here. */
 public class ConstMotion {
   public static final Angle INTAKE_PIVOT_TOLERANCE = Degrees.of(1.0);
-  public static final double INTAKE_PIVOT_AGITATION_TIME = 1 / 3;
+  public static final Time INTAKE_PIVOT_AGITATION_TIME = Units.Seconds.of(1.0 / 3.0);
   public static final TalonFXConfiguration INTAKE_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final Angle DEPLOY_INTAKE_PIVOT_ANGLE = Degrees.of(125);
