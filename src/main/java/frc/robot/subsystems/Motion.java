@@ -80,7 +80,7 @@ public class Motion extends SubsystemBase {
     return hoodAtPostion;
   }
 
-  public boolean isIntakePivotAtAngle(Angle tolerance) {
+  public boolean getIntakePivotAtAngle(Angle tolerance) {
     Angle lowerlim = lastDesiredIntakePivotAngle.minus(tolerance);
     Angle upperlim = lastDesiredIntakePivotAngle.plus(tolerance);
 
