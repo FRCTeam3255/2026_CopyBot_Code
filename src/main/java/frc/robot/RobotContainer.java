@@ -63,6 +63,9 @@ public class RobotContainer {
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
   public static final ResetPose resetPose = new ResetPose();
 
+  Command TRY_NONE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.NONE));
+
   Command TRY_INTAKING = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.INTAKING));
 
@@ -132,19 +135,24 @@ public class RobotContainer {
 
   private void configDriverBindings() {
     conDriver.btn_LeftTrigger
-        .whileTrue(TRY_INTAKING);
+        .whileTrue(TRY_INTAKING)
+        .onFalse(TRY_NONE);
     conDriver.btn_RightStick
-        .onTrue(TRY_RETRACTING);
+        .onTrue(TRY_RETRACTING)
+        .onFalse(TRY_NONE);
     conDriver.btn_South
-        .whileTrue(TRY_EJECTING_HOPPER);
+        .whileTrue(TRY_EJECTING_HOPPER)
+        .onFalse(TRY_NONE);
     conDriver.btn_East
-        .whileTrue(TRY_REVERSING_SHOOTER);
+        .whileTrue(TRY_REVERSING_SHOOTER)
+        .onFalse(TRY_NONE);
     conDriver.btn_West
         .onTrue(TRY_PREPNEAUTRALTOALLIANCE);
     conDriver.btn_LeftStick
         .onTrue(TRY_PREPOPPONENTOALLIANCE);
     conDriver.btn_RightTrigger
-        .whileTrue(TRY_SHOOTING);
+        .whileTrue(TRY_SHOOTING)
+        .onFalse(TRY_NONE);
     conDriver.btn_A
         .onTrue(TRY_PREPTRENCH);
     conDriver.btn_B
@@ -162,7 +170,7 @@ public class RobotContainer {
     // .onFalse(Commands.runOnce(() ->
     // driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
     conDriver.btn_North
-        .onTrue(resetPose);
+        .whileTrue(resetPose);
   }
 
   private void configOperatorBindings() {
