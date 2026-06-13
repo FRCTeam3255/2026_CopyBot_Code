@@ -22,14 +22,13 @@ public class Shooting extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState((StateMachine.RobotState.SHOOTING));
+    RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.TRANSFER_ROLLERS_SPEED);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.TRANSFER_ROLLERS_SPEED);
-    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
-
   }
 
   // Called once the command ends or is interrupted.
