@@ -91,6 +91,17 @@ public class Motion extends SubsystemBase {
     return intakePivotAtPosition;
   }
 
+  public boolean isIntakePivotAtAngle(Angle tol, Angle target) {
+    Angle lowerlim = target.minus(tol);
+    Angle upperlim = target.plus(tol);
+
+    Angle intakePivotAngle = getIntakePivotAngle();
+
+    intakePivotAtPosition = intakePivotAngle.gte(lowerlim)
+        && intakePivotAngle.lte(upperlim);
+    return intakePivotAtPosition;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

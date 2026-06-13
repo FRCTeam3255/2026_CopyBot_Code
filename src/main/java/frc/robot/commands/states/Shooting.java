@@ -4,6 +4,9 @@
 
 package frc.robot.commands.states;
 
+import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.RobotState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstMotion;
@@ -12,8 +15,13 @@ import frc.robot.subsystems.StateMachine;
 
 public class Shooting extends Command {
   /** Creates a new Shooting. */
+
+  private final Timer intakeAgitationTimer = new Timer();
+  private RobotState previousState;RobotBase
+
   public Shooting() {
 
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.stateMachineInstance);
   }
@@ -29,6 +37,21 @@ public class Shooting extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    intakeAgitationTimer.start();
+    if (!RobotContainer.motionInstance.isIntakePivotAtAngle(ConstMotion.RETRACT_INTAKE_PIVOT_ANGLE,
+        ConstMotion.INTAKE_PIVOT_TOLERANCE)
+        && intakeAgitationTimer.hasElapsed(ConstMotion.INTAKE_PIVOT_AGITATION_TIME)) {
+      RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.RETRACT_INTAKE_PIVOT_ANGLE);
+      intakeAgitationTimer.stop();
+      intakeAgitationTimer.restart();
+      intakeAgitationTimer.start();
+
+    } else if (intakeAgitationTimer.hasElapsed((ConstMotion.INTAKE_PIVOT_AGITATION_TIME))) {
+      RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.DEPLOY_INTAKE_PIVOT_ANGLE);
+      intakeAgitationTimer.stop();
+      intakeAgitationTimer.restart();
+    }
+
   }
 
   // Called once the command ends or is interrupted.
@@ -38,7 +61,8 @@ public class Shooting extends Command {
     RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.STOP);
     RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.STOP);
     RobotContainer.motionInstance.setHoodPivotAngle(ConstMotion.HOOD_PIVOT_ANGLE_RETRACT);
-
+    RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.DEPLOY_INTAKE_PIVOT_ANGLE);
+    intakeAgitationTimer.stop();
   }
 
   // Returns true when the command should end.
