@@ -13,7 +13,7 @@ public class PrepOpponentToAlliance extends BasePrep {
   /** Creates a new PrepOpponentToAlliance. */
   public PrepOpponentToAlliance() {
 
-    super(ConstRotors.FLYWHEEL_OPPONENT_TO_ALLIANCE_SPEED, ConstMotion.HOOD_OPPENENT_TO_ALLIANCE_ANGLE,
+    super(ConstRotors.FLYWHEEL_PREP_OPPONENT_TO_ALLIANCE_SPEED, ConstMotion.HOOD_OPPENENT_TO_ALLIANCE_ANGLE,
         RobotState.PREP_OPPONENT_TO_ALLIANCE);
 
     // Use addRequirements() here to declare subsystem dependencies.

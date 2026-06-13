@@ -12,7 +12,7 @@ public class PrepTower extends BasePrep {
   /** Creates a new PrepOutpost. */
   public PrepTower() {
 
-    super(ConstRotors.FLYWHEEL_TOWER_SPEED, ConstMotion.HOOD_TOWER_ANGLE, RobotState.PREP_TOWER);
+    super(ConstRotors.FLYWHEEL_PREP_TOWER_SPEED, ConstMotion.HOOD_TOWER_ANGLE, RobotState.PREP_TOWER);
 
     // Use addRequirements() here to declare subsystem dependencies.
   }

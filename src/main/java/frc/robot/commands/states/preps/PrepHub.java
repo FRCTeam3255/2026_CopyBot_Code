@@ -14,7 +14,7 @@ public class PrepHub extends BasePrep {
   /** Creates a new PrepDepot. */
   public PrepHub() {
 
-    super(ConstRotors.FLYWHEEL_HUB_SPEED, ConstMotion.HOOD_HUB_ANGLE, RobotState.PREP_HUB);
+    super(ConstRotors.FLYWHEEL_PREP_HUB_SPEED, ConstMotion.HOOD_HUB_ANGLE, RobotState.PREP_HUB);
 
     // setState
     // Use addRequirements() here to declare subsystem dependencies.
