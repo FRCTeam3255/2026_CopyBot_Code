@@ -22,22 +22,21 @@ public class Shooting extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState((StateMachine.RobotState.SHOOTING));
+    RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.TRANSFER_ROLLERS_SPEED);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTER_ROLLERS_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.TRANSFER_ROLLERS_SPEED);
-    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTER_ROLLERS_SPEED);
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.rotorsInstance.setFlywheelPercentOutput(0.0);
-    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(0.0);
-    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(0.0);
+    RobotContainer.rotorsInstance.setFlywheelPercentOutput(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setTransferRollersPercentOutput(ConstRotors.STOP);
+    RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.STOP);
     RobotContainer.motionInstance.setHoodPivotAngle(ConstMotion.HOOD_PIVOT_ANGLE_RETRACT);
 
   }
