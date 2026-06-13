@@ -40,11 +40,11 @@ public class Shooting extends Command {
   public void execute() {
     if (!RobotContainer.motionInstance.getIntakePivotAngle().isNear(ConstMotion.RETRACT_INTAKE_PIVOT_ANGLE,
         ConstMotion.INTAKE_PIVOT_TOLERANCE)
-        && intakeAgitationTimer.hasElapsed(ConstMotion.INTAKE_PIVOT_AGITATION_TIME)) {
+        && intakeAgitationTimer.advanceIfElapsed(ConstMotion.INTAKE_PIVOT_AGITATION_TIME)) {
       RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.RETRACT_INTAKE_PIVOT_ANGLE);
       intakeAgitationTimer.restart();
 
-    } else if (intakeAgitationTimer.hasElapsed((ConstMotion.INTAKE_PIVOT_AGITATION_TIME))) {
+    } else if (intakeAgitationTimer.advanceIfElapsed((ConstMotion.INTAKE_PIVOT_AGITATION_TIME))) {
       RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.DEPLOY_INTAKE_PIVOT_ANGLE);
       intakeAgitationTimer.restart();
     }
