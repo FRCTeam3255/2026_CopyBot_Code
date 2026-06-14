@@ -23,16 +23,17 @@ public class ConstMotion {
 
   public static final InterpolatingDoubleTreeMap hoodAngleMap = new InterpolatingDoubleTreeMap();
 
-  public static final Angle INTAKE_PIVOT_TOLERANCE = Degrees.of(1.0);
+  public static final Angle INTAKE_PIVOT_TOLERANCE = Degrees.of(5.0);
   public static final Time INTAKE_PIVOT_AGITATION_TIME = Units.Seconds.of(1.0 / 3.0);
   public static final TalonFXConfiguration INTAKE_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final Angle DEPLOY_INTAKE_PIVOT_ANGLE = Degrees.of(125);
   public static final Angle RETRACT_INTAKE_PIVOT_ANGLE = Degrees.of(0);
+  public static final Angle AGITATE_PIVOT_ANGLE = Degrees.of(63);
   public static final Angle HOOD_PIVOT_ANGLE = Degrees.of(14);
   public static final Angle HOOD_PIVOT_ANGLE_RETRACT = Degrees.of(0);
   public static final double STOP = 0;
-  public static final Angle HOOD_NONE_ANGLE = Degrees.of(0);
+  public static final Angle HOOD_NONE_ANGLE = Degrees.of(3.2);
   public static final Angle HOOD_TRENCH_ANGLE = Units.Degrees.of(13);
   public static final Angle HOOD_CORNER_ANGLE = Units.Degrees.of(23.5);
   public static final Angle HOOD_TOWER_ANGLE = Units.Degrees.of(14);
