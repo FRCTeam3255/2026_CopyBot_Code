@@ -28,6 +28,7 @@ public class Shooting extends Command {
     RobotContainer.stateMachineInstance.setRobotState((StateMachine.RobotState.SHOOTING));
     RobotContainer.rotorsInstance.setTransferRollersSpeeds(ConstRotors.TRANSFER_ROLLERS_SPEED);
     RobotContainer.rotorsInstance.setSerializerRollersPercentOutput(ConstRotors.SERIALIZER_SHOOTING_SPEED);
+    RobotContainer.rotorsInstance.setIntakeRollersPercentOutput(ConstRotors.INTAKE_ROLLERS_SPEED);
     intakeAgitationTimer.restart();
 
   }
@@ -35,10 +36,10 @@ public class Shooting extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!RobotContainer.motionInstance.getIntakePivotAngle().isNear(ConstMotion.RETRACT_INTAKE_PIVOT_ANGLE,
+    if (!RobotContainer.motionInstance.getIntakePivotAngle().isNear(ConstMotion.AGITATE_PIVOT_ANGLE,
         ConstMotion.INTAKE_PIVOT_TOLERANCE)
         && intakeAgitationTimer.hasElapsed(ConstMotion.INTAKE_PIVOT_AGITATION_TIME)) {
-      RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.RETRACT_INTAKE_PIVOT_ANGLE);
+      RobotContainer.motionInstance.setIntakePivotAngle(ConstMotion.AGITATE_PIVOT_ANGLE);
       intakeAgitationTimer.restart();
 
     } else if (intakeAgitationTimer.hasElapsed((ConstMotion.INTAKE_PIVOT_AGITATION_TIME))) {

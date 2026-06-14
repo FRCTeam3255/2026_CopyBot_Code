@@ -100,7 +100,7 @@ public class RobotContainer {
       () -> stateMachineInstance.tryState(RobotState.PREP_CORNER));
 
   Command TRY_RETRACTING = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREP_CORNER));
+      () -> stateMachineInstance.tryState(RobotState.RETRACT_INTAKE));
 
   Command MANUAL = new DeferredCommand(
       driverStateMachineInstance.tryState(
