@@ -236,4 +236,9 @@ public class Drivetrain extends SN_SuperSwerveV2 {
   public Rotation2d getRawHeading() {
     return getState().RawHeading;
   }
+
+  public void setManualDrive(boolean b) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setManualDrive'");
+  }
 }

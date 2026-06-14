@@ -5,16 +5,22 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.units.Units;
+import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstField;
 
 @Logged
 public class RobotPoses extends SubsystemBase {
   /** Creates a new RobotPoses. */
+  Distance distanceToHub = Units.Meters.of(0);
+
   Field2d field2d = new Field2d();
   FieldObject2d robotObject = field2d.getObject("Robot");
 
@@ -32,5 +38,16 @@ public class RobotPoses extends SubsystemBase {
 
     // Robot Positions
     modelDrivetrain = new Pose3d(RobotContainer.drivetrainInstance.getPose());
+    Pose2d hubPose = getHub();
+    distanceToHub = Units.Meters.of(RobotContainer.drivetrainInstance.getPose().getTranslation().getDistance(hubPose.getTranslation()));
   }
+
+  public Pose2d getHub() {
+    return ConstField.FieldElementGroups.HUB_POSE_SET.getAlliancePoses().get(0);
+
+  }
+  public Distance getDistanceToHub(){
+    return distanceToHub;
+  }
+
 }

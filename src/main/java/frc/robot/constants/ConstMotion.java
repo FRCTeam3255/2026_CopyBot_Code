@@ -13,12 +13,16 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Time;
 
 /** Add your docs here. */
 public class ConstMotion {
+
+  public static final InterpolatingDoubleTreeMap hoodAngleMap = new InterpolatingDoubleTreeMap();
+
   public static final Angle INTAKE_PIVOT_TOLERANCE = Degrees.of(1.0);
   public static final Time INTAKE_PIVOT_AGITATION_TIME = Units.Seconds.of(1.0 / 3.0);
   public static final TalonFXConfiguration INTAKE_PIVOT_CONFIGURATION = new TalonFXConfiguration();
@@ -38,6 +42,14 @@ public class ConstMotion {
   public static final Angle HOOD_OPPENENT_TO_ALLIANCE_ANGLE = Units.Degrees.of(37);
 
   static {
+
+    hoodAngleMap.put(Units.Inches.of(200).in(Units.Inches), Degrees.of(29).in(Degrees));
+    hoodAngleMap.put(Units.Inches.of(180).in(Units.Inches), Degrees.of(24).in(Degrees));
+    hoodAngleMap.put(Units.Inches.of(140).in(Units.Inches), Degrees.of(24).in(Degrees));
+    hoodAngleMap.put(Units.Inches.of(120).in(Units.Inches), Degrees.of(22).in(Degrees));
+    hoodAngleMap.put(Units.Inches.of(100).in(Units.Inches), Degrees.of(16).in(Degrees));
+    hoodAngleMap.put(Units.Inches.of(80).in(Units.Inches), Degrees.of(13.25).in(Degrees));
+    hoodAngleMap.put(Units.Inches.of(50).in(Units.Inches), Degrees.of(1).in(Degrees));
 
     INTAKE_PIVOT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     INTAKE_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;

@@ -4,15 +4,21 @@
 
 package frc.robot.constants;
 
+import static edu.wpi.first.units.Units.RPM;
+
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
+import edu.wpi.first.math.interpolation.InterpolatingTreeMap;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.AngularVelocity;
 
 /** Add your docs here. */
 public class ConstRotors {
+
+  public static final InterpolatingDoubleTreeMap flyWheelSpeedMap = new InterpolatingDoubleTreeMap();
 
   public static final TalonFXConfiguration SERIALIZER_ROLLERS_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
@@ -43,6 +49,16 @@ public class ConstRotors {
   public static final double REVERSE_TRANSFER_ROLLERS_SPEED = -1;
 
   static {
+
+    flyWheelSpeedMap.put(Units.Inches.of(190).in(Units.Inches), RPM.of(4200).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(180).in(Units.Inches), RPM.of(4125).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(165.1).in(Units.Inches), RPM.of(4100).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(165).in(Units.Inches), RPM.of(4000).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(160).in(Units.Inches), RPM.of(3800).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(150).in(Units.Inches), RPM.of(3700).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(140).in(Units.Inches), RPM.of(3600).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(120).in(Units.Inches), RPM.of(3400).in(RPM));
+    flyWheelSpeedMap.put(Units.Inches.of(0).in(Units.Inches), RPM.of(3400).in(RPM));
 
     // SHOOTER_TRANSFER_EAST_CONFIGURATION.MotorOutput.NeutralMode =
     // NeutralModeValue.Coast;/
