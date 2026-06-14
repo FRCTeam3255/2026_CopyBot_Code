@@ -33,6 +33,7 @@ public class Motion extends SubsystemBase {
   public Motion() {
     intakePivot.getConfigurator().apply(ConstMotion.INTAKE_PIVOT_CONFIGURATION);
     hoodPivot.getConfigurator().apply(ConstMotion.HOOD_PIVOT_CONFIGURATION);
+    hoodPivot.setPosition(ConstMotion.HOOD_NONE_ANGLE);
   }
 
   /**
