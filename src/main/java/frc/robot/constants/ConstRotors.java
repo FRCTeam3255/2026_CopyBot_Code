@@ -96,7 +96,13 @@ public class ConstRotors {
 
     TRANSFER_ROLLERS_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     TRANSFER_ROLLERS_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
-
+    TRANSFER_ROLLERS_WEST_CONFIGURATION.Slot0.kP = 0.7;
+    TRANSFER_ROLLERS_WEST_CONFIGURATION.Slot0.kS = 0.15;
+    TRANSFER_ROLLERS_WEST_CONFIGURATION.Slot0.kV = 0.12;
+    TRANSFER_ROLLERS_WEST_CONFIGURATION.Slot0.kA = 0;
+    TRANSFER_ROLLERS_WEST_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
+    TRANSFER_ROLLERS_WEST_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
+    TRANSFER_ROLLERS_WEST_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
   }
 
 }
