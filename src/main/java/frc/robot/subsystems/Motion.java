@@ -10,7 +10,9 @@ import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.Robot;
@@ -34,6 +36,11 @@ public class Motion extends SubsystemBase {
     intakePivot.getConfigurator().apply(ConstMotion.INTAKE_PIVOT_CONFIGURATION);
     hoodPivot.getConfigurator().apply(ConstMotion.HOOD_PIVOT_CONFIGURATION);
     hoodPivot.setPosition(ConstMotion.HOOD_NONE_ANGLE);
+  }
+
+  public static Angle getMappedHoodAngle(Distance distance) {
+    double angle = ConstMotion.hoodAngleMap.get(distance.in(Units.Inches));
+    return Degrees.of(angle);
   }
 
   /**
