@@ -86,7 +86,7 @@ public class Rotors extends SubsystemBase {
   }
 
   public AngularVelocity getTransferRollersVelocity() {
-    return transferRollersEastFollower.getVelocity().getValue();
+    return transferRollersWestLeader.getVelocity().getValue();
   }
 
   public void setSerializerRollersPercentOutput(Double speed) {
@@ -105,8 +105,8 @@ public class Rotors extends SubsystemBase {
   }
 
   public void setTransferRollersPercentOutput(Double speed) {
-    transferRollersEastFollower.set(speed);
-    transferRollersWestLeader.setControl(transferRollersFollowerOpposedRequest);
+    transferRollersWestLeader.set(speed);
+    transferRollersEastFollower.setControl(transferRollersFollowerOpposedRequest);
   }
 
   public void setFlyWheelSpeeds(AngularVelocity speed) {
